@@ -191,6 +191,8 @@ class UserDAOTest {
         }
     }
 
+
+
     internal fun populateUserTable(): UserDAO{
         SchemaUtils.create(Users)
         val userDAO = UserDAO()

@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c4b216d-f406-4591-89ab-5ae864f2c72b" name="Changes" comment="Added Junit tests">
+    <list default="true" id="2c4b216d-f406-4591-89ab-5ae864f2c72b" name="Changes" comment="Fixed an issue with running a single Junit test case in IDE">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/Activity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Activities.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/ActivityDAO.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/controllers/HealthTrackerAPITest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/ServerContainer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/javalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/javalinConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTrackerController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTrackerController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/userDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/UserDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils/DBUtilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils/DBUtilities.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/UserDAOTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/UserDAOTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,26 +42,58 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/rukman/SETU/agile/healthtracketrest/src/test/kotlin/ie/setu&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/rukman/SETU/agile/healthtracketrest/src/test/kotlin/ie/setu",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "MavenSettings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/kotlin/ie/setu" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserDAOTest$ReadUsers.getting all users from a populated table returns all rows">
+  <component name="RunManager" selected="JUnit.HealthTrackerControllerTest">
     <configuration name="All in healthtracketrest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="healthtracketrest" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HealthTrackerControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="healthtracketrest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ie.setu.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ie.setu.controllers" />
+      <option name="MAIN_CLASS_NAME" value="ie.setu.controllers.HealthTrackerControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HealthTrackerControllerTest.get all users from the database returns 200 or 404 response" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="healthtracketrest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ie.setu.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ie.setu.controllers" />
+      <option name="MAIN_CLASS_NAME" value="ie.setu.controllers.HealthTrackerControllerTest" />
+      <option name="METHOD_NAME" value="get all users from the database returns 200 or 404 response" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -73,23 +114,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ie.setu in healthtracketrest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="healthtracketrest" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ie.setu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ie.setu" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ie.setu.repository in healthtracketrest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="healthtracketrest" />
       <extension name="coverage">
         <pattern>
@@ -98,14 +123,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ie.setu.repository" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AppKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ie.setu.AppKt" />
-      <module name="healthtracketrest" />
+      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.UserDAOTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -136,20 +155,20 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.HealthTrackerControllerTest" />
+      <item itemvalue="JUnit.HealthTrackerControllerTest.get all users from the database returns 200 or 404 response" />
+      <item itemvalue="JUnit.UserDAOTest" />
       <item itemvalue="JUnit.UserDAOTest$ReadUsers.getting all users from a populated table returns all rows" />
       <item itemvalue="JUnit.All in healthtracketrest" />
-      <item itemvalue="JUnit.ie.setu in healthtracketrest" />
-      <item itemvalue="JUnit.ie.setu.repository in healthtracketrest" />
-      <item itemvalue="Kotlin.AppKt" />
       <item itemvalue="Maven.deploy-heroku" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.HealthTrackerControllerTest" />
+        <item itemvalue="JUnit.HealthTrackerControllerTest.get all users from the database returns 200 or 404 response" />
+        <item itemvalue="JUnit.UserDAOTest" />
         <item itemvalue="JUnit.UserDAOTest$ReadUsers.getting all users from a populated table returns all rows" />
         <item itemvalue="JUnit.All in healthtracketrest" />
-        <item itemvalue="JUnit.ie.setu.repository in healthtracketrest" />
-        <item itemvalue="JUnit.ie.setu in healthtracketrest" />
-        <item itemvalue="Kotlin.AppKt" />
       </list>
     </recent_temporary>
   </component>
@@ -166,6 +185,11 @@
       <workItem from="1665783467897" duration="2765000" />
       <workItem from="1665919603824" duration="5620000" />
       <workItem from="1665955201087" duration="10280000" />
+      <workItem from="1666285827086" duration="973000" />
+      <workItem from="1666286807747" duration="331000" />
+      <workItem from="1666287467331" duration="218000" />
+      <workItem from="1666803019063" duration="642000" />
+      <workItem from="1666899641261" duration="3402000" />
     </task>
     <task id="LOCAL-00001" summary="Updated code to use the heroku postgres instance, added logging, modified DAO class and added utility file">
       <created>1665951756735</created>
@@ -188,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665967637430</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed an issue with running a single Junit test case in IDE">
+      <created>1666286138887</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666286138887</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,10 +240,14 @@
     <MESSAGE value="Updated code to use the heroku postgres instance, added logging, modified DAO class and added utility file" />
     <MESSAGE value="Update DAO class methods" />
     <MESSAGE value="Added Junit tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Junit tests" />
+    <MESSAGE value="Fixed an issue with running a single Junit test case in IDE" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue with running a single Junit test case in IDE" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/healthtracketrest$ie_setu_repository_in_healthtracketrest.ic" NAME="ie.setu.repository in healthtracketrest Coverage Results" MODIFIED="1665967286808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ie.setu.repository.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/healthtracketrest$UserDAOTest.ic" NAME="UserDAOTest Coverage Results" MODIFIED="1666899974687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ie.setu.repository.*</FILTER>
     </SUITE>
   </component>
