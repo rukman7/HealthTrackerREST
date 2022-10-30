@@ -36,7 +36,7 @@
             <artifactId>javalin</artifactId>
             <version>4.6.1</version>
         </dependency>
-        <!-- These Logging Dependencies are required; warning appears otherwise when running -->
+<!--         These Logging Dependencies are required; warning appears otherwise when running -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -82,24 +82,6 @@
             <groupId>io.javalin</groupId>
             <artifactId>javalin-bundle</artifactId>
             <version>4.6.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.javalin.community.openapi/openapi-specification -->
-        <dependency>
-            <groupId>io.javalin.community.openapi</groupId>
-            <artifactId>javalin-openapi-plugin</artifactId>
-            <version>5.0.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.javalin.community.openapi/javalin-swagger-plugin -->
-        <dependency>
-            <groupId>io.javalin.community.openapi</groupId>
-            <artifactId>javalin-swagger-plugin</artifactId>
-            <version>5.0.1</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.javalin.community.openapi/javalin-redoc-plugin -->
-        <dependency>
-            <groupId>io.javalin.community.openapi</groupId>
-            <artifactId>javalin-redoc-plugin</artifactId>
-            <version>5.0.1</version>
         </dependency>
         <!-- Adding JUnit 5 dependency -->
         <dependency>
