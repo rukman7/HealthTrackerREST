@@ -45,6 +45,20 @@ class JavalinConfig {
             path("/api/activities") {
                 get(HealthTrackerController::getAllActivities)
                 post(HealthTrackerController::addActivity)
+                path("{activity-id}") {
+                    get(HealthTrackerController::getActivitiesByActivityId)
+                    delete(HealthTrackerController::deleteActivityByActivityId)
+                    patch(HealthTrackerController::updateActivity)
+                }
+            }
+
+            path("/api/waterintake") {
+                get(HealthTrackerController::getAllWaterIntake)
+                post(HealthTrackerController::addWaterIntake)
+                path("{user-id}"){
+                    patch(HealthTrackerController::updateWaterIntake)
+                    delete(HealthTrackerController::deleteWaterIntakeByUserId)
+                }
             }
         }
     }

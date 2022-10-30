@@ -8,7 +8,9 @@ import ie.setu.domain.repository.UserDAO
 import io.javalin.http.Context
 import com.fasterxml.jackson.module.kotlin.readValue
 import ie.setu.domain.Activity
+import ie.setu.domain.WaterIntake
 import ie.setu.domain.repository.ActivityDAO
+import ie.setu.domain.repository.WaterIntakeDAO
 import ie.setu.utils.jsonToObject
 import io.javalin.plugin.openapi.annotations.*
 
@@ -16,6 +18,7 @@ object HealthTrackerController {
 
     private val userDao = UserDAO()
     private val activityDAO = ActivityDAO()
+    private val waterIntakeDAO = WaterIntakeDAO()
 
     @OpenApi(
         summary = "Get all users",
@@ -187,4 +190,33 @@ object HealthTrackerController {
             activityId = ctx.pathParam("activity-id").toInt(),
             activityDTO=activity)
     }
+
+    //--------------------------------------------------------------
+    // WaterIntakeDAO specifics
+    //--------------------------------------------------------------
+
+    fun addWaterIntake(ctx: Context) {
+        val mapper = jacksonObjectMapper()
+        val waterIntake = mapper.readValue<WaterIntake>(ctx.body())
+        waterIntakeDAO.save(waterIntake)
+        ctx.json(waterIntake)
+    }
+
+    fun getAllWaterIntake(ctx: Context) {
+        val mapper = jacksonObjectMapper()
+        ctx.json(mapper.writeValueAsString(waterIntakeDAO.getAll()))
+    }
+
+    fun updateWaterIntake(ctx: Context){
+        val waterIntake : WaterIntake = jsonToObject(ctx.body())
+        if ((waterIntakeDAO.update(id = ctx.pathParam("user-id").toInt(), waterIntake=waterIntake)) != 0)
+            ctx.status(204)
+        else
+            ctx.status(404)
+    }
+
+    fun deleteWaterIntakeByUserId(ctx: Context){
+        waterIntakeDAO.deleteByUserId(ctx.pathParam("user-id").toInt())
+    }
+
 }

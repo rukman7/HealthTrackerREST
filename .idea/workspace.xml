@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c4b216d-f406-4591-89ab-5ae864f2c72b" name="Changes" comment="Updated utilites, integration tests and DAO files">
+    <list default="true" id="2c4b216d-f406-4591-89ab-5ae864f2c72b" name="Changes" comment="Support for generating swagger from code">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/WaterIntake.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/WaterIntake.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterIntakeDAO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/javalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/javalinConfig.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTrackerController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTrackerController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils/DBUtilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils/DBUtilities.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +53,9 @@
       <recent name="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils" />
       <recent name="$PROJECT_DIR$/src/test/kotlin/ie/setu" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="ie.setu.domain" />
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.AppKt">
@@ -180,7 +187,7 @@
       <workItem from="1666286807747" duration="331000" />
       <workItem from="1666287467331" duration="218000" />
       <workItem from="1666803019063" duration="642000" />
-      <workItem from="1666899641261" duration="18401000" />
+      <workItem from="1666899641261" duration="23627000" />
     </task>
     <task id="LOCAL-00001" summary="Updated code to use the heroku postgres instance, added logging, modified DAO class and added utility file">
       <created>1665951756735</created>
@@ -238,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666986162013</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Support for generating swagger from code">
+      <created>1667125141897</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1667125141897</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,7 +276,8 @@
     <MESSAGE value="Fixed an issue with running a single Junit test case in IDE" />
     <MESSAGE value="Added activity feature, integration test and refactoring" />
     <MESSAGE value="Updated utilites, integration tests and DAO files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated utilites, integration tests and DAO files" />
+    <MESSAGE value="Support for generating swagger from code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Support for generating swagger from code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/healthtracketrest$ie_setu_repository_in_healthtracketrest.ic" NAME="ie.setu.repository in healthtracketrest Coverage Results" MODIFIED="1665967286808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
