@@ -8,8 +8,10 @@ import ie.setu.domain.repository.UserDAO
 import io.javalin.http.Context
 import com.fasterxml.jackson.module.kotlin.readValue
 import ie.setu.domain.Activity
+import ie.setu.domain.BMI
 import ie.setu.domain.WaterIntake
 import ie.setu.domain.repository.ActivityDAO
+import ie.setu.domain.repository.BmiDAO
 import ie.setu.domain.repository.WaterIntakeDAO
 import ie.setu.utils.jsonToObject
 import io.javalin.plugin.openapi.annotations.*
@@ -19,6 +21,7 @@ object HealthTrackerController {
     private val userDao = UserDAO()
     private val activityDAO = ActivityDAO()
     private val waterIntakeDAO = WaterIntakeDAO()
+    private val bmiDAO = BmiDAO()
 
     @OpenApi(
         summary = "Get all users",
@@ -219,4 +222,44 @@ object HealthTrackerController {
         waterIntakeDAO.deleteByUserId(ctx.pathParam("user-id").toInt())
     }
 
+
+    //--------------------------------------------------------------
+    // BmiDAO specifics
+    //--------------------------------------------------------------
+
+    fun addBmiData(ctx: Context) {
+        val mapper = jacksonObjectMapper()
+        val bmiData = mapper.readValue<BMI>(ctx.body())
+        val bmiVal = calculateBmi(bmiData.height, bmiData.weight)
+        bmiData.bmi = bmiVal
+        bmiDAO.save(bmiData)
+        ctx.json(bmiData)
+    }
+
+    fun getAllBmiInfo(ctx: Context) {
+        val mapper = jacksonObjectMapper()
+        ctx.json(mapper.writeValueAsString(bmiDAO.getAll()))
+    }
+
+    fun getBmiInfoByUser(ctx: Context) {
+        val mapper = jacksonObjectMapper()
+        ctx.json(mapper.writeValueAsString(bmiDAO.getByUserId(ctx.pathParam("user-id").toInt())))
+    }
+
+    fun updateBmiData(ctx: Context){
+        val bmidata : BMI = jsonToObject(ctx.body())
+        bmidata.bmi = calculateBmi(bmidata.height, bmidata.weight)
+        if ((bmiDAO.update(id = ctx.pathParam("user-id").toInt(), bmiData=bmidata)) != 0)
+            ctx.status(204)
+        else
+            ctx.status(404)
+    }
+
+    fun deleteBmiDataByUserId(ctx: Context){
+        bmiDAO.deleteByUserId(ctx.pathParam("user-id").toInt())
+    }
+
+    private fun calculateBmi(height: Double, weight: Double) : Int{
+        return ((weight / (height * height)).toInt())
+    }
 }

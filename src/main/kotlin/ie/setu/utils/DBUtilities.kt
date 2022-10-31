@@ -4,8 +4,10 @@ import ie.setu.domain.User
 import ie.setu.domain.db.Users
 import org.jetbrains.exposed.sql.ResultRow
 import ie.setu.domain.Activity
+import ie.setu.domain.BMI
 import ie.setu.domain.WaterIntake
 import ie.setu.domain.db.Activities
+import ie.setu.domain.db.Bmi
 
 fun mapToUser(it: ResultRow) = User(
     id = it[Users.id],
@@ -29,3 +31,10 @@ fun mapToWaterIntake(it: ResultRow) = WaterIntake(
     target = it[ie.setu.domain.db.WaterIntake.target]
 )
 
+fun mapToBmi(it: ResultRow) = BMI(
+    user_id = it[Bmi.user_id],
+    description = it[Bmi.description],
+    height = it[Bmi.height],
+    weight = it[Bmi.weight],
+    bmi = it[Bmi.bmi]
+)

@@ -60,6 +60,15 @@ class JavalinConfig {
                     delete(HealthTrackerController::deleteWaterIntakeByUserId)
                 }
             }
+            path("/api/bmi"){
+                get(HealthTrackerController::getAllBmiInfo)
+                post(HealthTrackerController::addBmiData)
+                path("{user-id}"){
+                    get(HealthTrackerController::getBmiInfoByUser)
+                    patch(HealthTrackerController::updateBmiData)
+                    delete(HealthTrackerController::deleteBmiDataByUserId)
+                }
+            }
         }
     }
 
