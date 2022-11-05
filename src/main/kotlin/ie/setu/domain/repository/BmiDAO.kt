@@ -15,15 +15,15 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class BmiDAO {
 
     //Save BMI data to the database
-    fun save(bmiData: BMI){
-        transaction {
+    fun save(bmiData: BMI): Int?{
+        return transaction {
             Bmi.insert {
                 it[user_id] = bmiData.user_id
                 it[description] = bmiData.description
                 it[height] = bmiData.height
                 it[weight] = bmiData.weight
                 it[bmi] = bmiData.bmi
-            }
+            } get Bmi.user_id
         }
     }
 

@@ -2,6 +2,7 @@ package ie.setu.helpers
 
 import ie.setu.domain.Activity
 import ie.setu.domain.User
+import ie.setu.domain.WaterIntake
 import ie.setu.domain.db.Activities
 import ie.setu.domain.db.Users
 import ie.setu.domain.repository.ActivityDAO
@@ -26,6 +27,10 @@ val activities = arrayListOf<Activity>(
     Activity(id = 1, description = "Running", duration = 22.0, calories = 230, started = DateTime.now(), userId = 1),
     Activity(id = 2, description = "Hopping", duration = 10.5, calories = 80, started = DateTime.now(), userId = 1),
     Activity(id = 3, description = "Walking", duration = 12.0, calories = 120, started = DateTime.now(), userId = 2)
+)
+
+var waterintake = arrayListOf<WaterIntake>(
+    WaterIntake(user_id = 1, "Water intake information", cups = 3, target = 8)
 )
 
 fun populateUserTable(): UserDAO {

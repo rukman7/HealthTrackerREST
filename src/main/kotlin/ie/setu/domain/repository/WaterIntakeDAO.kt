@@ -8,14 +8,14 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class WaterIntakeDAO {
 
     //Save water intake data to the database
-    fun save(waterIntake: WaterIntake){
-        transaction {
+    fun save(waterIntake: WaterIntake):Int?{
+        return transaction {
             ie.setu.domain.db.WaterIntake.insert {
                 it[user_id] = waterIntake.user_id
                 it[description] = waterIntake.description
                 it[cups] = waterIntake.cups
                 it[target] = waterIntake.target
-            }
+            } get ie.setu.domain.db.WaterIntake.user_id
         }
     }
 

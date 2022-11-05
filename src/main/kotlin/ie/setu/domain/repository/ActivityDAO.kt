@@ -50,8 +50,8 @@ class ActivityDAO {
         }
     }
 
-    fun updateByActivityId(activityId: Int, activityDTO: Activity){
-        transaction {
+    fun updateByActivityId(activityId: Int, activityDTO: Activity): Int {
+        return transaction {
             Activities.update ({
                 Activities.id eq activityId}) {
                 it[description] = activityDTO.description
