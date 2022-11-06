@@ -2,7 +2,7 @@ package ie.setu.controllers
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import ie.setu.domain.BMI
+import ie.setu.domain.BMIDTO
 import ie.setu.domain.WaterIntake
 import ie.setu.domain.repository.WaterIntakeDAO
 import ie.setu.utils.jsonToObject
@@ -76,13 +76,13 @@ object WaterIntakeController {
     }
 
     @OpenApi(
-        summary = "Get water intake by User ID",
+        summary = "Get water intake by UserDTO ID",
         operationId = "getWaterIntakeByUser",
         tags = ["WaterIntake"],
         path = "/api/waterintake/{user-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
-        responses  = [OpenApiResponse("200", [OpenApiContent(BMI::class)])]
+        responses  = [OpenApiResponse("200", [OpenApiContent(BMIDTO::class)])]
     )
     fun getWaterIntakeByUser(ctx: Context) {
         val mapper = jacksonObjectMapper()

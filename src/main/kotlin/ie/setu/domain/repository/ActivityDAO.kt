@@ -1,6 +1,6 @@
 package ie.setu.domain.repository
 
-import ie.setu.domain.Activity
+import ie.setu.domain.ActivityDTO
 import ie.setu.domain.db.Activities
 import ie.setu.utils.mapToActivity
 import org.jetbrains.exposed.sql.*
@@ -9,8 +9,8 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class ActivityDAO {
 
     //Get all the activities in the database regardless of user id
-    fun getAll(): ArrayList<Activity> {
-        val activitiesList: ArrayList<Activity> = arrayListOf()
+    fun getAll(): ArrayList<ActivityDTO> {
+        val activitiesList: ArrayList<ActivityDTO> = arrayListOf()
         transaction {
             Activities.selectAll().map {
                 activitiesList.add(mapToActivity(it)) }
@@ -19,7 +19,7 @@ class ActivityDAO {
     }
 
     //Find a specific activity by activity id
-    fun findByActivityId(id: Int): Activity?{
+    fun findByActivityId(id: Int): ActivityDTO?{
         return transaction {
             Activities
                 .select() { Activities.id eq id}
@@ -29,7 +29,7 @@ class ActivityDAO {
     }
 
     //Find all activities for a specific user id
-    fun findByUserId(userId: Int): List<Activity>{
+    fun findByUserId(userId: Int): List<ActivityDTO>{
         return transaction {
             Activities
                 .select {Activities.userId eq userId}
@@ -37,20 +37,21 @@ class ActivityDAO {
         }
     }
 
-    //Save an activity to the database
-    fun save(activity: Activity){
-        transaction {
+    //Save an activityDTO to the database
+    fun save(activityDTO: ActivityDTO): Int?{
+        return transaction {
             Activities.insert {
-                it[description] = activity.description
-                it[duration] = activity.duration
-                it[started] = activity.started
-                it[calories] = activity.calories
-                it[userId] = activity.userId
-            }
+                it[id] = activityDTO.id
+                it[description] = activityDTO.description
+                it[duration] = activityDTO.duration
+                it[started] = activityDTO.started
+                it[calories] = activityDTO.calories
+                it[userId] = activityDTO.userId
+            } get Activities.id
         }
     }
 
-    fun updateByActivityId(activityId: Int, activityDTO: Activity): Int {
+    fun updateByActivityId(activityId: Int, activityDTO: ActivityDTO): Int {
         return transaction {
             Activities.update ({
                 Activities.id eq activityId}) {

@@ -1,7 +1,7 @@
 package ie.setu.controllers
 
 import ie.setu.config.DbConfig
-import ie.setu.domain.User
+import ie.setu.domain.UserDTO
 import ie.setu.helpers.ServerContainer
 import ie.setu.helpers.*
 import ie.setu.utils.jsonToObject
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class HealthTrackerControllerTest {
+class UserControllerTest {
 
     private val db = DbConfig().getDbConnection()
     private val app = ServerContainer.instance
@@ -25,13 +25,13 @@ class HealthTrackerControllerTest {
     inner class ReadUsers {
         @Test
         fun `get all users from the database returns 200 or 404 response`() {
-            val response = Unirest.get(origin + "/api/users/").asString()
+            val response = Unirest.get(origin + "/api/userDTOS/").asString()
             if (response.status == 200) {
-                val retrievedUsers: ArrayList<User> = jsonToObject(response.body.toString())
-                assertNotEquals(0, retrievedUsers.size)
+                val retrievedUserDTOS: ArrayList<UserDTO> = jsonToObject(response.body.toString())
+                assertNotEquals(0, retrievedUserDTOS.size)
             }
             else {
-                assertEquals(404, response.status)
+               assertEquals(404, response.status)
             }
         }
 
@@ -42,7 +42,7 @@ class HealthTrackerControllerTest {
             val id = Integer.MIN_VALUE
 
             // Act - attempt to retrieve the non-existent user from the database
-            val retrieveResponse = Unirest.get(origin + "/api/users/${id}").asString()
+            val retrieveResponse = Unirest.get(origin + "/api/userDTOS/${id}").asString()
 
             // Assert -  verify return code
             assertEquals(404, retrieveResponse.status)
@@ -51,7 +51,7 @@ class HealthTrackerControllerTest {
         @Test
         fun `get user by email when user does not exist returns 404 response`() {
             // Arrange & Act - attempt to retrieve the non-existent user from the database
-            val retrieveResponse = Unirest.get(origin + "/api/users/email/${nonExistingEmail}").asString()
+            val retrieveResponse = Unirest.get(origin + "/api/userDTOS/email/${nonExistingEmail}").asString()
             // Assert -  verify return code
             assertEquals(404, retrieveResponse.status)
         }
@@ -61,14 +61,14 @@ class HealthTrackerControllerTest {
 
             //Arrange - add the user
             val addResponse = addUser(validName, validEmail)
-            val addedUser : User = jsonToObject(addResponse.body.toString())
+            val addedUserDTO : UserDTO = jsonToObject(addResponse.body.toString())
 
             //Assert - retrieve the added user from the database and verify return code
-            val retrieveResponse = retrieveUserById(addedUser.id)
+            val retrieveResponse = retrieveUserById(addedUserDTO.id)
             assertEquals(200, retrieveResponse.status)
 
             //After - restore the db to previous state by deleting the added user
-            deleteUser(addedUser.id)
+            deleteUser(addedUserDTO.id)
         }
 
         @Test
@@ -82,8 +82,8 @@ class HealthTrackerControllerTest {
             assertEquals(200, retrieveResponse.status)
 
             //After - restore the db to previous state by deleting the added user
-            val retrievedUser : User = jsonToObject(retrieveResponse.body.toString())
-            deleteUser(retrievedUser.id)
+            val retrievedUserDTO : UserDTO = jsonToObject(retrieveResponse.body.toString())
+            deleteUser(retrievedUserDTO.id)
         }
     }
 
@@ -102,12 +102,12 @@ class HealthTrackerControllerTest {
             assertEquals(200, retrieveResponse.status)
 
             //Assert - verify the contents of the retrieved user
-            val retrievedUser : User = jsonToObject(addResponse.body.toString())
-            assertEquals(validEmail, retrievedUser.email)
-            assertEquals(validName, retrievedUser.name)
+            val retrievedUserDTO : UserDTO = jsonToObject(addResponse.body.toString())
+            assertEquals(validEmail, retrievedUserDTO.email)
+            assertEquals(validName, retrievedUserDTO.name)
 
             //After - restore the db to previous state by deleting the added user
-            val deleteResponse = deleteUser(retrievedUser.id)
+            val deleteResponse = deleteUser(retrievedUserDTO.id)
             assertEquals(204, deleteResponse.status)
         }
     }
@@ -119,19 +119,19 @@ class HealthTrackerControllerTest {
 
             //Arrange - add the user that we plan to do an update on
             val addedResponse = addUser(validName, validEmail)
-            val addedUser : User = jsonToObject(addedResponse.body.toString())
+            val addedUserDTO : UserDTO = jsonToObject(addedResponse.body.toString())
 
             //Act & Assert - update the email and name of the retrieved user and assert 204 is returned
-            assertEquals(204, updateUser(addedUser.id, updatedName, updatedEmail).status)
+            assertEquals(204, updateUser(addedUserDTO.id, updatedName, updatedEmail).status)
 
             //Act & Assert - retrieve updated user and assert details are correct
-            val updatedUserResponse = retrieveUserById(addedUser.id)
-            val updatedUser : User = jsonToObject(updatedUserResponse.body.toString())
-            assertEquals(updatedName, updatedUser.name)
-            assertEquals(updatedEmail, updatedUser.email)
+            val updatedUserResponse = retrieveUserById(addedUserDTO.id)
+            val updatedUserDTO : UserDTO = jsonToObject(updatedUserResponse.body.toString())
+            assertEquals(updatedName, updatedUserDTO.name)
+            assertEquals(updatedEmail, updatedUserDTO.email)
 
             //After - restore the db to previous state by deleting the added user
-            deleteUser(addedUser.id)
+            deleteUser(addedUserDTO.id)
         }
 
         @Test
@@ -155,13 +155,13 @@ class HealthTrackerControllerTest {
 
             //Arrange - add the user that we plan to do a delete on
             val addedResponse = addUser(validName, validEmail)
-            val addedUser: User = jsonToObject(addedResponse.body.toString())
+            val addedUserDTO: UserDTO = jsonToObject(addedResponse.body.toString())
 
             //Act & Assert - delete the added user and assert a 204 is returned
-            assertEquals(204, deleteUser(addedUser.id).status)
+            assertEquals(204, deleteUser(addedUserDTO.id).status)
 
             //Act & Assert - attempt to retrieve the deleted user --> 404 response
-            assertEquals(404, retrieveUserById(addedUser.id).status)
+            assertEquals(404, retrieveUserById(addedUserDTO.id).status)
         }
 
     }

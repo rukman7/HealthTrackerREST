@@ -1,32 +1,22 @@
 package ie.setu.controllers
 
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.datatype.joda.JodaModule
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import ie.setu.domain.User
+import ie.setu.domain.UserDTO
 import ie.setu.domain.repository.UserDAO
 import io.javalin.http.Context
-import com.fasterxml.jackson.module.kotlin.readValue
-import ie.setu.domain.Activity
-import ie.setu.domain.BMI
-import ie.setu.domain.WaterIntake
-import ie.setu.domain.repository.ActivityDAO
-import ie.setu.domain.repository.BmiDAO
-import ie.setu.domain.repository.WaterIntakeDAO
 import ie.setu.utils.jsonToObject
 import io.javalin.plugin.openapi.annotations.*
 
-object HealthTrackerController {
+object UserController {
 
     private val userDao = UserDAO()
 
     @OpenApi(
         summary = "Get all users",
         operationId = "getAllUsers",
-        tags = ["User"],
+        tags = ["UserDTO"],
         path = "/api/users",
         method = HttpMethod.GET,
-        responses = [OpenApiResponse("200", [OpenApiContent(Array<User>::class)])]
+        responses = [OpenApiResponse("200", [OpenApiContent(Array<UserDTO>::class)])]
     )
     fun getAllUsers(ctx: Context) {
         val users = userDao.getAll()
@@ -41,11 +31,11 @@ object HealthTrackerController {
     @OpenApi(
         summary = "Get user by ID",
         operationId = "getUserById",
-        tags = ["User"],
+        tags = ["UserDTO"],
         path = "/api/users/{user-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
-        responses = [OpenApiResponse("200", [OpenApiContent(User::class)])]
+        responses = [OpenApiResponse("200", [OpenApiContent(UserDTO::class)])]
     )
     fun getUserByUserId(ctx: Context) {
         val user = userDao.findById(ctx.pathParam("user-id").toInt())
@@ -60,11 +50,11 @@ object HealthTrackerController {
     @OpenApi(
         summary = "Get user by Email",
         operationId = "getUserByEmail",
-        tags = ["User"],
+        tags = ["UserDTO"],
         path = "/api/users/email/{email}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("email", Int::class, "The user email")],
-        responses = [OpenApiResponse("200", [OpenApiContent(User::class)])]
+        responses = [OpenApiResponse("200", [OpenApiContent(UserDTO::class)])]
     )
     fun getUserByEmail(ctx: Context) {
         val user = userDao.findByEmail(ctx.pathParam("email"))
@@ -77,20 +67,20 @@ object HealthTrackerController {
     }
 
     @OpenApi(
-        summary = "Add User",
+        summary = "Add UserDTO",
         operationId = "addUser",
-        tags = ["User"],
+        tags = ["UserDTO"],
         path = "/api/users",
         method = HttpMethod.POST,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
         responses = [OpenApiResponse("200")]
     )
     fun addUser(ctx: Context) {
-        val user: User = jsonToObject(ctx.body())
-        val userId = userDao.save(user)
+        val userDTO: UserDTO = jsonToObject(ctx.body())
+        val userId = userDao.save(userDTO)
         if (userId != null) {
-            user.id = userId
-            ctx.json(user)
+            userDTO.id = userId
+            ctx.json(userDTO)
             ctx.status(201)
         }
     }
@@ -98,7 +88,7 @@ object HealthTrackerController {
     @OpenApi(
         summary = "Delete user by ID",
         operationId = "deleteUserById",
-        tags = ["User"],
+        tags = ["UserDTO"],
         path = "/api/users/{user-id}",
         method = HttpMethod.DELETE,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
@@ -114,15 +104,15 @@ object HealthTrackerController {
     @OpenApi(
         summary = "Update user by ID",
         operationId = "updateUserById",
-        tags = ["User"],
+        tags = ["UserDTO"],
         path = "/api/users/{user-id}",
         method = HttpMethod.PATCH,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
         responses = [OpenApiResponse("204")]
     )
     fun updateUser(ctx: Context) {
-        val foundUser: User = jsonToObject(ctx.body())
-        if ((userDao.update(id = ctx.pathParam("user-id").toInt(), user = foundUser)) != 0)
+        val foundUserDTO: UserDTO = jsonToObject(ctx.body())
+        if ((userDao.update(id = ctx.pathParam("user-id").toInt(), userDTO = foundUserDTO)) != 0)
             ctx.status(204)
         else
             ctx.status(404)

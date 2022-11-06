@@ -1,21 +1,19 @@
 package ie.setu.utils
 
-import ie.setu.domain.User
+import ie.setu.domain.*
 import ie.setu.domain.db.Users
 import org.jetbrains.exposed.sql.ResultRow
-import ie.setu.domain.Activity
-import ie.setu.domain.BMI
-import ie.setu.domain.WaterIntake
 import ie.setu.domain.db.Activities
 import ie.setu.domain.db.Bmi
+import ie.setu.domain.db.Foods
 
-fun mapToUser(it: ResultRow) = User(
+fun mapToUser(it: ResultRow) = UserDTO(
     id = it[Users.id],
     name = it[Users.name],
     email = it[Users.email]
 )
 
-fun mapToActivity(it: ResultRow) = Activity(
+fun mapToActivity(it: ResultRow) = ActivityDTO(
     id = it[Activities.id],
     description = it[Activities.description],
     duration = it[Activities.duration],
@@ -31,10 +29,19 @@ fun mapToWaterIntake(it: ResultRow) = WaterIntake(
     target = it[ie.setu.domain.db.WaterIntake.target]
 )
 
-fun mapToBmi(it: ResultRow) = BMI(
+fun mapToBmi(it: ResultRow) = BMIDTO(
     user_id = it[Bmi.user_id],
     description = it[Bmi.description],
     height = it[Bmi.height],
     weight = it[Bmi.weight],
     bmi = it[Bmi.bmi]
+)
+
+fun mapToFoodDTO(it: ResultRow) = FoodDTO(
+    id = it[Foods.id],
+    mealname = it[Foods.mealname],
+    foodname = it[Foods.foodname],
+    foodtime = it[Foods.foodtime],
+    calories = it[Foods.calories],
+    userId = it[Foods.userId]
 )

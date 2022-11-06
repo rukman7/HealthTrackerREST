@@ -2,7 +2,7 @@ package ie.setu.controllers
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import ie.setu.domain.BMI
+import ie.setu.domain.BMIDTO
 import ie.setu.domain.repository.BmiDAO
 import ie.setu.utils.jsonToObject
 import io.javalin.http.Context
@@ -17,21 +17,21 @@ object BMIController {
     //--------------------------------------------------------------
 
     @OpenApi(
-        summary = "Add BMI Data",
+        summary = "Add BMIDTO Data",
         operationId = "addBmiData",
-        tags = ["BMI"],
+        tags = ["BMIDTO"],
         path = "/api/bmi",
         method = HttpMethod.POST,
         responses  = [OpenApiResponse("200")]
     )
     fun addBmiData(ctx: Context) {
         val mapper = jacksonObjectMapper()
-        val bmiData = mapper.readValue<BMI>(ctx.body())
-        val bmiVal = calculateBmi(bmiData.height, bmiData.weight)
-        bmiData.bmi = bmiVal
-        val userId = bmiDAO.save(bmiData)
+        val BMIDTOData = mapper.readValue<BMIDTO>(ctx.body())
+        val bmiVal = calculateBmi(BMIDTOData.height, BMIDTOData.weight)
+        BMIDTOData.bmi = bmiVal
+        val userId = bmiDAO.save(BMIDTOData)
         if (userId != null){
-            ctx.json(bmiData)
+            ctx.json(BMIDTOData)
             ctx.status(201)
         }
         else{
@@ -40,12 +40,12 @@ object BMIController {
     }
 
     @OpenApi(
-        summary = "Get all BMI information",
+        summary = "Get all BMIDTO information",
         operationId = "getAllBmiInfo",
-        tags = ["BMI"],
+        tags = ["BMIDTO"],
         path = "/api/bmi",
         method = HttpMethod.GET,
-        responses = [OpenApiResponse("200", [OpenApiContent(Array<BMI>::class)])]
+        responses = [OpenApiResponse("200", [OpenApiContent(Array<BMIDTO>::class)])]
     )
     fun getAllBmiInfo(ctx: Context) {
         val mapper = jacksonObjectMapper()
@@ -60,13 +60,13 @@ object BMIController {
     }
 
         @OpenApi(
-        summary = "Get BMI info by User ID",
+        summary = "Get BMIDTO info by UserDTO ID",
         operationId = "getBmiInfoByUser",
-        tags = ["BMI"],
+        tags = ["BMIDTO"],
         path = "/api/bmi/{user-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
-        responses  = [OpenApiResponse("200", [OpenApiContent(BMI::class)])]
+        responses  = [OpenApiResponse("200", [OpenApiContent(BMIDTO::class)])]
     )
     fun getBmiInfoByUser(ctx: Context) {
         val mapper = jacksonObjectMapper()
@@ -81,18 +81,18 @@ object BMIController {
     }
 
     @OpenApi(
-        summary = "Update BMI data by user ID",
+        summary = "Update BMIDTO data by user ID",
         operationId = "updateBmiData",
-        tags = ["BMI"],
+        tags = ["BMIDTO"],
         path = "/api/bmi/{user-id}",
         method = HttpMethod.PATCH,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
         responses  = [OpenApiResponse("204")]
     )
     fun updateBmiData(ctx: Context){
-        val bmidata : BMI = jsonToObject(ctx.body())
+        val bmidata : BMIDTO = jsonToObject(ctx.body())
         bmidata.bmi = calculateBmi(bmidata.height, bmidata.weight)
-        if ((bmiDAO.update(id = ctx.pathParam("user-id").toInt(), bmiData=bmidata)) != 0)
+        if ((bmiDAO.update(id = ctx.pathParam("user-id").toInt(), BMIDTOData=bmidata)) != 0)
             ctx.status(204)
         else
             ctx.status(404)
@@ -100,9 +100,9 @@ object BMIController {
 
 
         @OpenApi(
-        summary = "Delete BMI data by ID",
+        summary = "Delete BMIDTO data by ID",
         operationId = "deleteBmiDataByUserId",
-        tags = ["BMI"],
+        tags = ["BMIDTO"],
         path = "/api/bmi/{user-id}",
         method = HttpMethod.DELETE,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],

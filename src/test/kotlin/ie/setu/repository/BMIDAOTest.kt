@@ -1,26 +1,23 @@
 package ie.setu.repository
 
-import ie.setu.domain.BMI
+import ie.setu.domain.BMIDTO
 import ie.setu.domain.db.Bmi
-import ie.setu.domain.db.Users
 import ie.setu.domain.repository.BmiDAO
-import ie.setu.domain.repository.UserDAO
 import ie.setu.helpers.PopulateBMITable
-import ie.setu.helpers.bmi
+import ie.setu.helpers.BMIDTOS
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-val bmi1 = bmi.get(0)
-val bmi2 = bmi.get(1)
-val bmi3 = bmi.get(2)
+val bmi1 = BMIDTOS.get(0)
+val bmi2 = BMIDTOS.get(1)
+val bmi3 = BMIDTOS.get(2)
 
-val emptyBMIList = arrayListOf<BMI>()
+val emptyBMIDTOList = arrayListOf<BMIDTO>()
 
 class BMIDAOTest {
 
@@ -35,7 +32,7 @@ class BMIDAOTest {
     }
 
     @Nested
-    inner class ReadBMI{
+    inner class ReadBMIDTO{
 
         @Test
         fun `getting all bmis from a populated table returns all rows`(){
@@ -58,7 +55,7 @@ class BMIDAOTest {
         @Test
         fun `get bmi user by id that exists, results in a correct user returned`() {
             transaction {
-                //Arrange - create and populate table with three bmi data
+                //Arrange - create and populate table with three BMIDTOS data
                 SchemaUtils.create(Bmi)
                 val bmiDAO = BmiDAO()
                 bmiDAO.save(bmi1)
@@ -106,9 +103,9 @@ class BMIDAOTest {
             transaction {
                 val bmiDAO = PopulateBMITable()
 
-                val bmi3updated = BMI(3,"This is updated BMI 3",6.6,76.0,29)
-                bmiDAO.update(3,bmi3updated)
-                assertEquals(bmi3updated,bmiDAO.getByUserId(3))
+                val BMIDTO3Updated = BMIDTO(3,"This is updated BMIDTO 3",6.6,76.0,29)
+                bmiDAO.update(3,BMIDTO3Updated)
+                assertEquals(BMIDTO3Updated,bmiDAO.getByUserId(3))
             }
         }
 
@@ -117,7 +114,7 @@ class BMIDAOTest {
             transaction {
                 val bmiDAO = PopulateBMITable()
 
-                val bmi4updated = BMI(4,"BMI 4",65.0,78.0,25)
+                val BMIDTO4Updated = BMIDTO(4,"BMIDTO 4",65.0,78.0,25)
                 assertEquals(null,bmiDAO.getByUserId(4))
                 assertEquals(3,bmiDAO.getAll().size)
             }
@@ -126,7 +123,7 @@ class BMIDAOTest {
     }
 
     @Nested
-    inner class DeleteBMI{
+    inner class DeleteBMIDTO{
 
         @Test
         fun `deleting a non-existent user in table results in no deletion`(){

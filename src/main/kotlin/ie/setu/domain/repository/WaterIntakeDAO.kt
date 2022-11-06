@@ -1,12 +1,8 @@
 package ie.setu.domain.repository
 
-import ie.setu.domain.BMI
 import ie.setu.domain.WaterIntake
-import ie.setu.domain.db.Bmi
-import ie.setu.utils.mapToBmi
 import ie.setu.utils.mapToWaterIntake
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class WaterIntakeDAO {

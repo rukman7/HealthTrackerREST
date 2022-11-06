@@ -1,9 +1,6 @@
 package ie.setu.config
 
-import ie.setu.controllers.ActivityController
-import ie.setu.controllers.BMIController
-import ie.setu.controllers.HealthTrackerController
-import ie.setu.controllers.WaterIntakeController
+import ie.setu.controllers.*
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
 import io.javalin.plugin.openapi.ui.SwaggerOptions
@@ -31,18 +28,23 @@ class JavalinConfig {
     private fun registerRoutes(app: Javalin) {
         app.routes {
             path("/api/users") {
-                get(HealthTrackerController::getAllUsers)
-                post(HealthTrackerController::addUser)
+                get(UserController::getAllUsers)
+                post(UserController::addUser)
                 path("{user-id}"){
-                    get(HealthTrackerController::getUserByUserId)
-                    delete(HealthTrackerController::deleteUser)
-                    patch(HealthTrackerController::updateUser)
+                    get(UserController::getUserByUserId)
+                    delete(UserController::deleteUser)
+                    patch(UserController::updateUser)
                     path("activities"){
                         get(ActivityController::getActivitiesByUserId)
                     }
+                    path("foods"){
+                        get(FoodTrackerController::getAllFoods)
+                        delete(FoodTrackerController::deleteFoodByFoodId)
+                    }
+
                 }
                 path("/email/{email}"){
-                    get(HealthTrackerController::getUserByEmail)
+                    get(UserController::getUserByEmail)
                 }
             }
             path("/api/activities") {
@@ -71,6 +73,16 @@ class JavalinConfig {
                     get(BMIController::getBmiInfoByUser)
                     patch(BMIController::updateBmiData)
                     delete(BMIController::deleteBmiDataByUserId)
+                }
+            }
+
+            path("/api/foods"){
+                get(FoodTrackerController::getAllFoods)
+                post(FoodTrackerController::addFood)
+                path("{food-id}"){
+                    get(FoodTrackerController::getFoodsByFoodId)
+                    delete(FoodTrackerController::deleteFoodByFoodId)
+                    patch(FoodTrackerController::updateFood)
                 }
             }
         }

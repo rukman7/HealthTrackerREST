@@ -3,16 +3,12 @@ package ie.setu.controllers
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import ie.setu.domain.User
+import ie.setu.domain.UserDTO
 import ie.setu.domain.repository.UserDAO
 import io.javalin.http.Context
 import com.fasterxml.jackson.module.kotlin.readValue
-import ie.setu.domain.Activity
-import ie.setu.domain.BMI
-import ie.setu.domain.WaterIntake
+import ie.setu.domain.ActivityDTO
 import ie.setu.domain.repository.ActivityDAO
-import ie.setu.domain.repository.BmiDAO
-import ie.setu.domain.repository.WaterIntakeDAO
 import ie.setu.utils.jsonToObject
 import io.javalin.plugin.openapi.annotations.*
 
@@ -27,10 +23,10 @@ object ActivityController {
     @OpenApi(
         summary = "Get all activities",
         operationId = "getAllActivities",
-        tags = ["Activity"],
+        tags = ["ActivityDTO"],
         path = "/api/activities",
         method = HttpMethod.GET,
-        responses = [OpenApiResponse("200", [OpenApiContent(Array<User>::class)])]
+        responses = [OpenApiResponse("200", [OpenApiContent(Array<UserDTO>::class)])]
     )
     fun getAllActivities(ctx: Context) {
         //mapper handles the deserialization of Joda date into a String.
@@ -49,11 +45,11 @@ object ActivityController {
     @OpenApi(
         summary = "Get activity by user ID",
         operationId = "getActivityByUserId",
-        tags = ["Activity"],
+        tags = ["ActivityDTO"],
         path = "/api/activities/{user-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
-        responses = [OpenApiResponse("200", [OpenApiContent(User::class)])]
+        responses = [OpenApiResponse("200", [OpenApiContent(UserDTO::class)])]
     )
     fun getActivitiesByUserId(ctx: Context) {
         if (userDao.findById(ctx.pathParam("user-id").toInt()) != null) {
@@ -72,9 +68,9 @@ object ActivityController {
     }
 
     @OpenApi(
-        summary = "Add Activity",
+        summary = "Add ActivityDTO",
         operationId = "addActivity",
-        tags = ["Activity"],
+        tags = ["ActivityDTO"],
         path = "/api/activities",
         method = HttpMethod.POST,
         responses = [OpenApiResponse("200")]
@@ -84,19 +80,26 @@ object ActivityController {
         val mapper = jacksonObjectMapper()
             .registerModule(JodaModule())
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-        val activity = mapper.readValue<Activity>(ctx.body())
-        activityDAO.save(activity)
-        ctx.json(activity)
+        val activityDTO = mapper.readValue<ActivityDTO>(ctx.body())
+        val activityId = activityDAO.save(activityDTO)
+        if(activityId != null){
+            ctx.json(mapper.writeValueAsString(activityDTO))
+            ctx.status(201)
+        }
+        else{
+            ctx.status(400)
+        }
+
     }
 
     @OpenApi(
         summary = "Get activity by activity ID",
         operationId = "getActivityByActivityId",
-        tags = ["Activity"],
+        tags = ["ActivityDTO"],
         path = "/api/activities/{activity-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("activity-id", Int::class, "The activity ID")],
-        responses = [OpenApiResponse("200", [OpenApiContent(Activity::class)])]
+        responses = [OpenApiResponse("200", [OpenApiContent(ActivityDTO::class)])]
     )
     fun getActivitiesByActivityId(ctx: Context) {
         val activity = activityDAO.findByActivityId((ctx.pathParam("activity-id").toInt()))
@@ -105,13 +108,17 @@ object ActivityController {
                 .registerModule(JodaModule())
                 .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
             ctx.json(mapper.writeValueAsString(activity))
+            ctx.status(200)
+        }
+        else{
+            ctx.status(404)
         }
     }
 
     @OpenApi(
-        summary = "Delete Activity by Activity ID",
+        summary = "Delete ActivityDTO by ActivityDTO ID",
         operationId = "deleteActivityByActivityId",
-        tags = ["Activity"],
+        tags = ["ActivityDTO"],
         path = "/api/activities/{activity-id}",
         method = HttpMethod.DELETE,
         pathParams = [OpenApiParam("activity-id", Int::class, "The activity ID")],
@@ -132,17 +139,17 @@ object ActivityController {
     @OpenApi(
         summary = "Update activity by ID",
         operationId = "updateActivityById",
-        tags = ["Activity"],
+        tags = ["ActivityDTO"],
         path = "/api/activities/{activity-id}",
         method = HttpMethod.PATCH,
         pathParams = [OpenApiParam("activity-id", Int::class, "The activity ID")],
         responses = [OpenApiResponse("204")]
     )
     fun updateActivity(ctx: Context) {
-        val activity: Activity = jsonToObject(ctx.body())
+        val activityDTO: ActivityDTO = jsonToObject(ctx.body())
         if ((activityDAO.updateByActivityId(
                 activityId = ctx.pathParam("activity-id").toInt(),
-                activityDTO = activity
+                activityDTO = activityDTO
             )) != 0
         ) {
             ctx.status(204)

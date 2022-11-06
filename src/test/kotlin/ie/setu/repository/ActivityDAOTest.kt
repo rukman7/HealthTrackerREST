@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import ie.setu.domain.db.Activities
-import ie.setu.domain.Activity
+import ie.setu.domain.ActivityDTO
 import ie.setu.domain.repository.ActivityDAO
 import ie.setu.helpers.activities
 import ie.setu.helpers.populateActivityTable
@@ -37,7 +37,7 @@ class ActivityDAOTest {
         @Test
         fun `multiple activities added to table can be retrieved successfully`() {
             transaction {
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
                 //Act & Assert
@@ -55,7 +55,7 @@ class ActivityDAOTest {
         @Test
         fun `getting all activites from a populated table returns all rows`() {
             transaction {
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
                 //Act & Assert
@@ -66,7 +66,7 @@ class ActivityDAOTest {
         @Test
         fun `get activity by user id that has no activities, results in no record returned`() {
             transaction {
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
                 //Act & Assert
@@ -77,7 +77,7 @@ class ActivityDAOTest {
         @Test
         fun `get activity by user id that exists, results in a correct activitie(s) returned`() {
             transaction {
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
                 //Act & Assert
@@ -103,7 +103,7 @@ class ActivityDAOTest {
         @Test
         fun `get activity by activity id that has no records, results in no record returned`() {
             transaction {
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
                 //Act & Assert
@@ -114,7 +114,7 @@ class ActivityDAOTest {
         @Test
         fun `get activity by activity id that exists, results in a correct activity returned`() {
             transaction {
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
                 //Act & Assert
@@ -131,15 +131,15 @@ class ActivityDAOTest {
         fun `updating existing activity in table results in successful update`() {
             transaction {
 
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
 
                 //Act & Assert
-                val activity3updated = Activity(id = 3, description = "Cardio", duration = 42.0,
+                val activityDTO3Updated = ActivityDTO(id = 3, description = "Cardio", duration = 42.0,
                     calories = 220, started = DateTime.now(), userId = 2)
-                activityDAO.updateByActivityId(activity3updated.id, activity3updated)
-                assertEquals(activity3updated, activityDAO.findByActivityId(3))
+                activityDAO.updateByActivityId(activityDTO3Updated.id, activityDTO3Updated)
+                assertEquals(activityDTO3Updated, activityDAO.findByActivityId(3))
             }
         }
 
@@ -147,14 +147,14 @@ class ActivityDAOTest {
         fun `updating non-existant activity in table results in no updates`() {
             transaction {
 
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
 
                 //Act & Assert
-                val activity4updated = Activity(id = 4, description = "Cardio", duration = 42.0,
+                val activityDTO4Updated = ActivityDTO(id = 4, description = "Cardio", duration = 42.0,
                     calories = 220, started = DateTime.now(), userId = 2)
-                activityDAO.updateByActivityId(4, activity4updated)
+                activityDAO.updateByActivityId(4, activityDTO4Updated)
                 assertEquals(null, activityDAO.findByActivityId(4))
                 assertEquals(3, activityDAO.getAll().size)
             }
@@ -168,7 +168,7 @@ class ActivityDAOTest {
         fun `deleting a non-existant activity (by id) in table results in no deletion`() {
             transaction {
 
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
 
@@ -183,7 +183,7 @@ class ActivityDAOTest {
         fun `deleting an existing activity (by id) in table results in record being deleted`() {
             transaction {
 
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
 
@@ -199,7 +199,7 @@ class ActivityDAOTest {
         fun `deleting activities when none exist for user id results in no deletion`() {
             transaction {
 
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
 
@@ -214,7 +214,7 @@ class ActivityDAOTest {
         fun `deleting activities when 1 or more exist for user id results in deletion`() {
             transaction {
 
-                //Arrange - create and populate tables with three users and three activities
+                //Arrange - create and populate tables with three userDTOS and three activities
                 val userDAO = populateUserTable()
                 val activityDAO = populateActivityTable()
 
