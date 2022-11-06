@@ -1,6 +1,9 @@
 package ie.setu.config
 
+import ie.setu.controllers.ActivityController
+import ie.setu.controllers.BMIController
 import ie.setu.controllers.HealthTrackerController
+import ie.setu.controllers.WaterIntakeController
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
 import io.javalin.plugin.openapi.ui.SwaggerOptions
@@ -35,7 +38,7 @@ class JavalinConfig {
                     delete(HealthTrackerController::deleteUser)
                     patch(HealthTrackerController::updateUser)
                     path("activities"){
-                        get(HealthTrackerController::getActivitiesByUserId)
+                        get(ActivityController::getActivitiesByUserId)
                     }
                 }
                 path("/email/{email}"){
@@ -43,31 +46,31 @@ class JavalinConfig {
                 }
             }
             path("/api/activities") {
-                get(HealthTrackerController::getAllActivities)
-                post(HealthTrackerController::addActivity)
+                get(ActivityController::getAllActivities)
+                post(ActivityController::addActivity)
                 path("{activity-id}") {
-                    get(HealthTrackerController::getActivitiesByActivityId)
-                    delete(HealthTrackerController::deleteActivityByActivityId)
-                    patch(HealthTrackerController::updateActivity)
+                    get(ActivityController::getActivitiesByActivityId)
+                    delete(ActivityController::deleteActivityByActivityId)
+                    patch(ActivityController::updateActivity)
                 }
             }
 
             path("/api/waterintake") {
-                get(HealthTrackerController::getAllWaterIntake)
-                post(HealthTrackerController::addWaterIntake)
+                get(WaterIntakeController::getAllWaterIntake)
+                post(WaterIntakeController::addWaterIntake)
                 path("{user-id}"){
-                    get(HealthTrackerController::getWaterIntakeByUser)
-                    patch(HealthTrackerController::updateWaterIntake)
-                    delete(HealthTrackerController::deleteWaterIntakeByUserId)
+                    get(WaterIntakeController::getWaterIntakeByUser)
+                    patch(WaterIntakeController::updateWaterIntake)
+                    delete(WaterIntakeController::deleteWaterIntakeByUserId)
                 }
             }
             path("/api/bmi"){
-                get(HealthTrackerController::getAllBmiInfo)
-                post(HealthTrackerController::addBmiData)
+                get(BMIController::getAllBmiInfo)
+                post(BMIController::addBmiData)
                 path("{user-id}"){
-                    get(HealthTrackerController::getBmiInfoByUser)
-                    patch(HealthTrackerController::updateBmiData)
-                    delete(HealthTrackerController::deleteBmiDataByUserId)
+                    get(BMIController::getBmiInfoByUser)
+                    patch(BMIController::updateBmiData)
+                    delete(BMIController::deleteBmiDataByUserId)
                 }
             }
         }

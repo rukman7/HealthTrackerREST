@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c4b216d-f406-4591-89ab-5ae864f2c72b" name="Changes" comment="Added swagger for waterintake and BMI features, added error handling to existing code">
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/BMIDAOTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/WaterIntakeDAOTest.kt" afterDir="false" />
+    <list default="true" id="2c4b216d-f406-4591-89ab-5ae864f2c72b" name="Changes" comment="Fixed issues and added unit test cases for waterintake and BMI feature">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/ActivityController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/BMIController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/WaterIntakeController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/javalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/javalinConfig.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTrackerController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTrackerController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/BmiDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/BmiDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterIntakeDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterIntakeDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/Fixtures.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/Fixtures.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +57,7 @@
       <recent name="ie.setu.domain" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="ie.setu.controllers" />
       <recent name="ie.setu.domain.db" />
       <recent name="ie.setu.domain.repository" />
       <recent name="ie.setu.domain" />
@@ -195,6 +194,7 @@
       <workItem from="1666803019063" duration="642000" />
       <workItem from="1666899641261" duration="30544000" />
       <workItem from="1667555059429" duration="25996000" />
+      <workItem from="1667698904526" duration="991000" />
     </task>
     <task id="LOCAL-00001" summary="Updated code to use the heroku postgres instance, added logging, modified DAO class and added utility file">
       <created>1665951756735</created>
@@ -273,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667673355918</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fixed issues and added unit test cases for waterintake and BMI feature">
+      <created>1667698996630</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1667698996630</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,13 +307,14 @@
     <MESSAGE value="Support for generating swagger from code" />
     <MESSAGE value="Added water intake feature" />
     <MESSAGE value="Added swagger for waterintake and BMI features, added error handling to existing code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added swagger for waterintake and BMI features, added error handling to existing code" />
+    <MESSAGE value="Fixed issues and added unit test cases for waterintake and BMI feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issues and added unit test cases for waterintake and BMI feature" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/healthtracketrest$ie_setu_repository_in_healthtracketrest.ic" NAME="ie.setu.repository in healthtracketrest Coverage Results" MODIFIED="1665967286808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ie.setu.repository.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/healthtracketrest$All_in_healthtracketrest.ic" NAME="All in healthtracketrest Coverage Results" MODIFIED="1667688901632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/healthtracketrest$All_in_healthtracketrest.ic" NAME="All in healthtracketrest Coverage Results" MODIFIED="1667699020662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/healthtracketrest$UserDAOTest.ic" NAME="UserDAOTest Coverage Results" MODIFIED="1666899974687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ie.setu.repository.*</FILTER>
     </SUITE>
