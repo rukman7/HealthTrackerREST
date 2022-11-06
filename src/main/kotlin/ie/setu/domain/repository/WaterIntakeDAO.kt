@@ -1,8 +1,12 @@
 package ie.setu.domain.repository
 
+import ie.setu.domain.BMI
 import ie.setu.domain.WaterIntake
+import ie.setu.domain.db.Bmi
+import ie.setu.utils.mapToBmi
 import ie.setu.utils.mapToWaterIntake
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class WaterIntakeDAO {
@@ -27,6 +31,16 @@ class WaterIntakeDAO {
                 waterIntakeList.add(mapToWaterIntake(it)) }
         }
         return waterIntakeList
+    }
+
+    //get water intake information based on a user id
+    fun getByUserId(userId: Int): WaterIntake?{
+        return transaction {
+            ie.setu.domain.db.WaterIntake
+                .select{ ie.setu.domain.db.WaterIntake.user_id eq userId }
+                .map{ mapToWaterIntake(it) }
+                .firstOrNull()
+        }
     }
 
     fun update(id: Int, waterIntake: WaterIntake): Int {

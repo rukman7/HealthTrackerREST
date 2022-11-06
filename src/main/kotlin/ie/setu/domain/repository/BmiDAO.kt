@@ -2,11 +2,14 @@ package ie.setu.domain.repository
 
 import ie.setu.domain.Activity
 import ie.setu.domain.BMI
+import ie.setu.domain.User
 import ie.setu.domain.WaterIntake
 import ie.setu.domain.db.Activities
 import ie.setu.domain.db.Bmi
+import ie.setu.domain.db.Users
 import ie.setu.utils.mapToActivity
 import ie.setu.utils.mapToBmi
+import ie.setu.utils.mapToUser
 import ie.setu.utils.mapToWaterIntake
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
@@ -38,11 +41,12 @@ class BmiDAO {
     }
 
     //get BMI information based on a user id
-    fun getByUserId(userId: Int){
+    fun getByUserId(userId: Int): BMI?{
         return transaction {
             Bmi
                 .select{ Bmi.user_id eq userId }
                 .map{ mapToBmi(it) }
+                .firstOrNull()
         }
     }
 

@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c4b216d-f406-4591-89ab-5ae864f2c72b" name="Changes" comment="Added water intake feature">
+    <list default="true" id="2c4b216d-f406-4591-89ab-5ae864f2c72b" name="Changes" comment="Added swagger for waterintake and BMI features, added error handling to existing code">
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/BMIDAOTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/WaterIntakeDAOTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/javalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/javalinConfig.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTrackerController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTrackerController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/ActivityDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/ActivityDAO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/BmiDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/BmiDAO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterIntakeDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterIntakeDAO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/Fixtures.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/Fixtures.kt" afterDir="false" />
@@ -63,21 +65,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.All in healthtracketrest">
-    <configuration name="ActivityDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="healthtracketrest" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ie.setu.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ie.setu.repository" />
-      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.ActivityDAOTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="All in healthtracketrest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="healthtracketrest" />
       <option name="PACKAGE_NAME" value="" />
@@ -86,16 +73,47 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HealthTrackerControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BMIDAOTest$ReadBMI.get bmi user by id that exists, results in a correct user returned" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="healthtracketrest" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ie.setu.controllers.*" />
+          <option name="PATTERN" value="ie.setu.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ie.setu.controllers" />
-      <option name="MAIN_CLASS_NAME" value="ie.setu.controllers.HealthTrackerControllerTest" />
+      <option name="PACKAGE_NAME" value="ie.setu.repository.BMIDAOTest" />
+      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.BMIDAOTest$ReadBMI" />
+      <option name="METHOD_NAME" value="get bmi user by id that exists, results in a correct user returned" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WaterIntakeDAOTest$CreateWaterintake" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="healthtracketrest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ie.setu.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ie.setu.repository.WaterIntakeDAOTest" />
+      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.WaterIntakeDAOTest$CreateWaterintake" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WaterIntakeDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="healthtracketrest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ie.setu.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ie.setu.repository" />
+      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.WaterIntakeDAOTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -111,13 +129,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="ie.setu.repository" />
       <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AppKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ie.setu.AppKt" />
-      <module name="healthtracketrest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,20 +159,20 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.BMIDAOTest$ReadBMI.get bmi user by id that exists, results in a correct user returned" />
+      <item itemvalue="JUnit.WaterIntakeDAOTest" />
+      <item itemvalue="JUnit.WaterIntakeDAOTest$CreateWaterintake" />
       <item itemvalue="JUnit.ie.setu.repository in healthtracketrest" />
       <item itemvalue="JUnit.All in healthtracketrest" />
-      <item itemvalue="JUnit.ActivityDAOTest" />
-      <item itemvalue="JUnit.HealthTrackerControllerTest" />
-      <item itemvalue="Kotlin.AppKt" />
       <item itemvalue="Maven.deploy-heroku" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in healthtracketrest" />
-        <item itemvalue="Kotlin.AppKt" />
+        <item itemvalue="JUnit.WaterIntakeDAOTest" />
+        <item itemvalue="JUnit.WaterIntakeDAOTest$CreateWaterintake" />
         <item itemvalue="JUnit.ie.setu.repository in healthtracketrest" />
-        <item itemvalue="JUnit.ActivityDAOTest" />
-        <item itemvalue="JUnit.HealthTrackerControllerTest" />
+        <item itemvalue="JUnit.BMIDAOTest$ReadBMI.get bmi user by id that exists, results in a correct user returned" />
       </list>
     </recent_temporary>
   </component>
@@ -183,7 +194,7 @@
       <workItem from="1666287467331" duration="218000" />
       <workItem from="1666803019063" duration="642000" />
       <workItem from="1666899641261" duration="30544000" />
-      <workItem from="1667555059429" duration="10514000" />
+      <workItem from="1667555059429" duration="25996000" />
     </task>
     <task id="LOCAL-00001" summary="Updated code to use the heroku postgres instance, added logging, modified DAO class and added utility file">
       <created>1665951756735</created>
@@ -255,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667132719432</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added swagger for waterintake and BMI features, added error handling to existing code">
+      <created>1667673355918</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1667673355918</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,13 +299,14 @@
     <MESSAGE value="Updated utilites, integration tests and DAO files" />
     <MESSAGE value="Support for generating swagger from code" />
     <MESSAGE value="Added water intake feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added water intake feature" />
+    <MESSAGE value="Added swagger for waterintake and BMI features, added error handling to existing code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added swagger for waterintake and BMI features, added error handling to existing code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/healthtracketrest$ie_setu_repository_in_healthtracketrest.ic" NAME="ie.setu.repository in healthtracketrest Coverage Results" MODIFIED="1665967286808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ie.setu.repository.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/healthtracketrest$All_in_healthtracketrest.ic" NAME="All in healthtracketrest Coverage Results" MODIFIED="1667175489228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/healthtracketrest$All_in_healthtracketrest.ic" NAME="All in healthtracketrest Coverage Results" MODIFIED="1667688901632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/healthtracketrest$UserDAOTest.ic" NAME="UserDAOTest Coverage Results" MODIFIED="1666899974687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ie.setu.repository.*</FILTER>
     </SUITE>

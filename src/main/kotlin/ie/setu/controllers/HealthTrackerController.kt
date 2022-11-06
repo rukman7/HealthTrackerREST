@@ -211,7 +211,7 @@ object HealthTrackerController {
         path = "/api/activities/{activity-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("activity-id", Int::class, "The activity ID")],
-        responses  = [OpenApiResponse("200", [OpenApiContent(User::class)])]
+        responses  = [OpenApiResponse("200", [OpenApiContent(Activity::class)])]
     )
     fun getActivitiesByActivityId(ctx: Context) {
         val activity = activityDAO.findByActivityId((ctx.pathParam("activity-id").toInt()))
@@ -296,7 +296,7 @@ object HealthTrackerController {
         tags = ["WaterIntake"],
         path = "/api/waterintake",
         method = HttpMethod.GET,
-        responses = [OpenApiResponse("200", [OpenApiContent(Array<User>::class)])]
+        responses = [OpenApiResponse("200", [OpenApiContent(Array<WaterIntake>::class)])]
     )
     fun getAllWaterIntake(ctx: Context) {
         val mapper = jacksonObjectMapper()
@@ -325,6 +325,27 @@ object HealthTrackerController {
             ctx.status(204)
         else
             ctx.status(404)
+    }
+
+    @OpenApi(
+        summary = "Get water intake by User ID",
+        operationId = "getWaterIntakeByUser",
+        tags = ["WaterIntake"],
+        path = "/api/waterintake/{user-id}",
+        method = HttpMethod.GET,
+        pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
+        responses  = [OpenApiResponse("200", [OpenApiContent(BMI::class)])]
+    )
+    fun getWaterIntakeByUser(ctx: Context) {
+        val mapper = jacksonObjectMapper()
+        val waterintake = waterIntakeDAO.getByUserId(ctx.pathParam("user-id").toInt())
+        if (waterintake != null){
+            ctx.json(mapper.writeValueAsString(waterintake))
+            ctx.status(200)
+        }
+        else{
+            ctx.status(404)
+        }
     }
 
     @OpenApi(
@@ -374,7 +395,7 @@ object HealthTrackerController {
         tags = ["BMI"],
         path = "/api/bmi",
         method = HttpMethod.GET,
-        responses = [OpenApiResponse("200", [OpenApiContent(Array<User>::class)])]
+        responses = [OpenApiResponse("200", [OpenApiContent(Array<BMI>::class)])]
     )
     fun getAllBmiInfo(ctx: Context) {
         val mapper = jacksonObjectMapper()
@@ -395,7 +416,7 @@ object HealthTrackerController {
         path = "/api/bmi/{user-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
-        responses  = [OpenApiResponse("200", [OpenApiContent(User::class)])]
+        responses  = [OpenApiResponse("200", [OpenApiContent(BMI::class)])]
     )
     fun getBmiInfoByUser(ctx: Context) {
         val mapper = jacksonObjectMapper()

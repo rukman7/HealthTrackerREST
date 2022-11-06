@@ -56,6 +56,7 @@ class JavalinConfig {
                 get(HealthTrackerController::getAllWaterIntake)
                 post(HealthTrackerController::addWaterIntake)
                 path("{user-id}"){
+                    get(HealthTrackerController::getWaterIntakeByUser)
                     patch(HealthTrackerController::updateWaterIntake)
                     delete(HealthTrackerController::deleteWaterIntakeByUserId)
                 }
