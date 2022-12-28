@@ -3,10 +3,12 @@ package ie.setu.config
 import ie.setu.controllers.*
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
+import io.javalin.plugin.json.JavalinJackson
 import io.javalin.plugin.openapi.ui.SwaggerOptions
 import io.javalin.plugin.openapi.OpenApiOptions
 import io.javalin.plugin.openapi.OpenApiPlugin
 import io.javalin.plugin.openapi.ui.ReDocOptions
+import io.javalin.plugin.rendering.vue.VueComponent
 import io.swagger.v3.oas.models.info.Info
 
 class JavalinConfig {
@@ -16,17 +18,38 @@ class JavalinConfig {
         val app = Javalin.create {
             it.registerPlugin(getConfiguredOpenApiPlugin())
             it.defaultContentType = "application/json"
+            //added this jsonMapper for our integration tests - serialise objects to json
+//        it.jsonMapper(JavalinJackson(jsonObjectMapper())) //TODO enable this later
+            it.enableWebjars()
         }.apply {
             exception(Exception::class.java) { e, _ -> e.printStackTrace() }
             error(404) { ctx -> ctx.json("404 - Not Found") }
         }.start(getHerokuAssignedPort())
-
         registerRoutes(app)
         return app
+
+
+//        val app = Javalin.create {
+//            it.registerPlugin(getConfiguredOpenApiPlugin())
+//            it.defaultContentType = "application/json"
+//        }.apply {
+//            exception(Exception::class.java) { e, _ -> e.printStackTrace() }
+//            error(404) { ctx -> ctx.json("404 - Not Found") }
+//        }.start(getHerokuAssignedPort())
+//
+//        registerRoutes(app)
+//        return app
     }
 
     private fun registerRoutes(app: Javalin) {
         app.routes {
+            // The @routeComponent that we added in layout.html earlier will be replaced
+            // by the String inside of VueComponent. This means a call to / will load
+            // the layout and display our <home-page> component.
+            get("/", VueComponent("<home-page></home-page>"))
+            get("/users", VueComponent("<user-overview></user-overview>"))
+            get("/users/{user-id}", VueComponent("<user-profile></user-profile>"))
+            get("/users/{user-id}/activities", VueComponent("<user-activity-overview></user-activity-overview>"))
             path("/api/users") {
                 get(UserController::getAllUsers)
                 post(UserController::addUser)
