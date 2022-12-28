@@ -13,7 +13,7 @@ object UserController {
     @OpenApi(
         summary = "Get all users",
         operationId = "getAllUsers",
-        tags = ["UserDTO"],
+        tags = ["User"],
         path = "/api/users",
         method = HttpMethod.GET,
         responses = [OpenApiResponse("200", [OpenApiContent(Array<UserDTO>::class)])]
@@ -31,7 +31,7 @@ object UserController {
     @OpenApi(
         summary = "Get user by ID",
         operationId = "getUserById",
-        tags = ["UserDTO"],
+        tags = ["User"],
         path = "/api/users/{user-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
@@ -50,7 +50,7 @@ object UserController {
     @OpenApi(
         summary = "Get user by Email",
         operationId = "getUserByEmail",
-        tags = ["UserDTO"],
+        tags = ["User"],
         path = "/api/users/email/{email}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("email", Int::class, "The user email")],
@@ -67,9 +67,9 @@ object UserController {
     }
 
     @OpenApi(
-        summary = "Add UserDTO",
+        summary = "Add User",
         operationId = "addUser",
-        tags = ["UserDTO"],
+        tags = ["User"],
         path = "/api/users",
         method = HttpMethod.POST,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
@@ -88,7 +88,7 @@ object UserController {
     @OpenApi(
         summary = "Delete user by ID",
         operationId = "deleteUserById",
-        tags = ["UserDTO"],
+        tags = ["User"],
         path = "/api/users/{user-id}",
         method = HttpMethod.DELETE,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
@@ -104,7 +104,7 @@ object UserController {
     @OpenApi(
         summary = "Update user by ID",
         operationId = "updateUserById",
-        tags = ["UserDTO"],
+        tags = ["User"],
         path = "/api/users/{user-id}",
         method = HttpMethod.PATCH,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],

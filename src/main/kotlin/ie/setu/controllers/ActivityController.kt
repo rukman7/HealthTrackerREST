@@ -23,7 +23,7 @@ object ActivityController {
     @OpenApi(
         summary = "Get all activities",
         operationId = "getAllActivities",
-        tags = ["ActivityDTO"],
+        tags = ["Activity"],
         path = "/api/activities",
         method = HttpMethod.GET,
         responses = [OpenApiResponse("200", [OpenApiContent(Array<UserDTO>::class)])]
@@ -45,7 +45,7 @@ object ActivityController {
     @OpenApi(
         summary = "Get activity by user ID",
         operationId = "getActivityByUserId",
-        tags = ["ActivityDTO"],
+        tags = ["Activity"],
         path = "/api/activities/{user-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
@@ -68,9 +68,9 @@ object ActivityController {
     }
 
     @OpenApi(
-        summary = "Add ActivityDTO",
+        summary = "Add Activity",
         operationId = "addActivity",
-        tags = ["ActivityDTO"],
+        tags = ["Activity"],
         path = "/api/activities",
         method = HttpMethod.POST,
         responses = [OpenApiResponse("200")]
@@ -95,7 +95,7 @@ object ActivityController {
     @OpenApi(
         summary = "Get activity by activity ID",
         operationId = "getActivityByActivityId",
-        tags = ["ActivityDTO"],
+        tags = ["Activity"],
         path = "/api/activities/{activity-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("activity-id", Int::class, "The activity ID")],
@@ -116,9 +116,9 @@ object ActivityController {
     }
 
     @OpenApi(
-        summary = "Delete ActivityDTO by ActivityDTO ID",
+        summary = "Delete Activity by Activity ID",
         operationId = "deleteActivityByActivityId",
-        tags = ["ActivityDTO"],
+        tags = ["Activity"],
         path = "/api/activities/{activity-id}",
         method = HttpMethod.DELETE,
         pathParams = [OpenApiParam("activity-id", Int::class, "The activity ID")],
@@ -139,7 +139,7 @@ object ActivityController {
     @OpenApi(
         summary = "Update activity by ID",
         operationId = "updateActivityById",
-        tags = ["ActivityDTO"],
+        tags = ["Activity"],
         path = "/api/activities/{activity-id}",
         method = HttpMethod.PATCH,
         pathParams = [OpenApiParam("activity-id", Int::class, "The activity ID")],

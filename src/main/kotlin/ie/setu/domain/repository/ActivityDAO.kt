@@ -41,7 +41,6 @@ class ActivityDAO {
     fun save(activityDTO: ActivityDTO): Int?{
         return transaction {
             Activities.insert {
-                it[id] = activityDTO.id
                 it[description] = activityDTO.description
                 it[duration] = activityDTO.duration
                 it[started] = activityDTO.started

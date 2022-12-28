@@ -29,7 +29,6 @@ class UserDAO {
     fun save(userDTO: UserDTO) : Int?{
         return transaction {
             Users.insert {
-                it[id] = userDTO.id
                 it[name] = userDTO.name
                 it[email] = userDTO.email
             } get Users.id

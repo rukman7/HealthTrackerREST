@@ -17,9 +17,9 @@ object BMIController {
     //--------------------------------------------------------------
 
     @OpenApi(
-        summary = "Add BMIDTO Data",
+        summary = "Add BMI Data",
         operationId = "addBmiData",
-        tags = ["BMIDTO"],
+        tags = ["BMI"],
         path = "/api/bmi",
         method = HttpMethod.POST,
         responses  = [OpenApiResponse("200")]
@@ -40,9 +40,9 @@ object BMIController {
     }
 
     @OpenApi(
-        summary = "Get all BMIDTO information",
+        summary = "Get all BMI information",
         operationId = "getAllBmiInfo",
-        tags = ["BMIDTO"],
+        tags = ["BMI"],
         path = "/api/bmi",
         method = HttpMethod.GET,
         responses = [OpenApiResponse("200", [OpenApiContent(Array<BMIDTO>::class)])]
@@ -60,9 +60,9 @@ object BMIController {
     }
 
         @OpenApi(
-        summary = "Get BMIDTO info by UserDTO ID",
+        summary = "Get BMI info by UserDTO ID",
         operationId = "getBmiInfoByUser",
-        tags = ["BMIDTO"],
+        tags = ["BMI"],
         path = "/api/bmi/{user-id}",
         method = HttpMethod.GET,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
@@ -81,9 +81,9 @@ object BMIController {
     }
 
     @OpenApi(
-        summary = "Update BMIDTO data by user ID",
+        summary = "Update BMI data by user ID",
         operationId = "updateBmiData",
-        tags = ["BMIDTO"],
+        tags = ["BMI"],
         path = "/api/bmi/{user-id}",
         method = HttpMethod.PATCH,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
@@ -100,9 +100,9 @@ object BMIController {
 
 
         @OpenApi(
-        summary = "Delete BMIDTO data by ID",
+        summary = "Delete BMI data by ID",
         operationId = "deleteBmiDataByUserId",
-        tags = ["BMIDTO"],
+        tags = ["BMI"],
         path = "/api/bmi/{user-id}",
         method = HttpMethod.DELETE,
         pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],

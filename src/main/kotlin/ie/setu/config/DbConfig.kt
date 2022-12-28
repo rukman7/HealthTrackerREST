@@ -12,10 +12,10 @@ class DbConfig{
 
         logger.info { "Starting DB connection..." }
         val dbConfig = Database.connect(
-            "jdbc:postgresql://ec2-52-70-45-163.compute-1.amazonaws.com:5432/d4i6ds0rediadt?sslmode=require",
+            "jdbc:postgresql://mel.db.elephantsql.com:5432/kfhlqhhv",
             driver = "org.postgresql.Driver",
-            user = "rfdbbzpuuzrlpv",
-            password = "0994ed6c7d464d74a48e8bcaf51bde015312df784d0430614e76f8f575efbfc7")
+                user = "kfhlqhhv",
+            password = "SLR4ONJFsG-m1mj-NFkm0wUG6vnoJN3j")
 
         logger.info{"DbConfig name = " + dbConfig.name}
         logger.info{"DbConfig url = " + dbConfig.url}
