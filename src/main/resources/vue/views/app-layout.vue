@@ -20,6 +20,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/activities">Activities</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/bmi">BMI</a>
+            </li>
           </ul>
         </div>
       </nav>

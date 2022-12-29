@@ -12,12 +12,13 @@ class BmiDAO {
     fun save(BMIDTOData: BMIDTO): Int?{
         return transaction {
             Bmi.insert {
-                it[user_id] = BMIDTOData.user_id
+                it[userId] = BMIDTOData.userId
                 it[description] = BMIDTOData.description
                 it[height] = BMIDTOData.height
                 it[weight] = BMIDTOData.weight
                 it[bmi] = BMIDTOData.bmi
-            } get Bmi.user_id
+                it[timestamp] = BMIDTOData.timestamp
+            } get Bmi.userId
         }
     }
 
@@ -35,7 +36,7 @@ class BmiDAO {
     fun getByUserId(userId: Int): BMIDTO?{
         return transaction {
             Bmi
-                .select{ Bmi.user_id eq userId }
+                .select{ Bmi.userId eq userId }
                 .map{ mapToBmi(it) }
                 .firstOrNull()
         }
@@ -44,18 +45,26 @@ class BmiDAO {
     fun update(id: Int, BMIDTOData: BMIDTO): Int {
         return transaction {
             Bmi.update({
-                Bmi.user_id eq id}) {
+                Bmi.id eq id}) {
                 it[description] = BMIDTOData.description
                 it[height] = BMIDTOData.height
                 it[weight] = BMIDTOData.weight
                 it[bmi] = BMIDTOData.bmi
+                it[timestamp] = BMIDTOData.timestamp
+                it[userId] = BMIDTOData.userId
             }
         }
     }
 
     fun deleteByUserId(userId: Int): Int {
         return transaction {
-            Bmi.deleteWhere{Bmi.user_id eq userId}
+            Bmi.deleteWhere{Bmi.userId eq userId}
+        }
+    }
+
+    fun deleteByBmiId(userId: Int): Int {
+        return transaction {
+            Bmi.deleteWhere{Bmi.id eq userId}
         }
     }
 }
