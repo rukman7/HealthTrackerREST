@@ -1,5 +1,7 @@
 package ie.setu.controllers
 
+import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import ie.setu.domain.BMIDTO
@@ -26,12 +28,14 @@ object BMIController {
     )
     fun addBmiData(ctx: Context) {
         val mapper = jacksonObjectMapper()
+            .registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
         val BMIDTOData = mapper.readValue<BMIDTO>(ctx.body())
         val bmiVal = calculateBmi(BMIDTOData.height, BMIDTOData.weight)
         BMIDTOData.bmi = bmiVal
         val userId = bmiDAO.save(BMIDTOData)
         if (userId != null){
-            ctx.json(BMIDTOData)
+            ctx.json(mapper.writeValueAsString(BMIDTOData))
             ctx.status(201)
         }
         else{
@@ -48,7 +52,9 @@ object BMIController {
         responses = [OpenApiResponse("200", [OpenApiContent(Array<BMIDTO>::class)])]
     )
     fun getAllBmiInfo(ctx: Context) {
-        val mapper = jacksonObjectMapper()
+                val mapper = jacksonObjectMapper()
+            .registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
         val bmidata = bmiDAO.getAll()
         if(bmidata.size != 0){
             ctx.status(200)
@@ -69,7 +75,9 @@ object BMIController {
         responses  = [OpenApiResponse("200", [OpenApiContent(BMIDTO::class)])]
     )
     fun getBmiInfoByUser(ctx: Context) {
-        val mapper = jacksonObjectMapper()
+                val mapper = jacksonObjectMapper()
+            .registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
         val bmidata = bmiDAO.getByUserId(ctx.pathParam("user-id").toInt())
         if (bmidata != null){
             ctx.json(mapper.writeValueAsString(bmidata))
@@ -84,15 +92,15 @@ object BMIController {
         summary = "Update BMI data by user ID",
         operationId = "updateBmiData",
         tags = ["BMI"],
-        path = "/api/bmi/{user-id}",
+        path = "/api/bmi/{bmi-id}",
         method = HttpMethod.PATCH,
-        pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
+        pathParams = [OpenApiParam("bmi-id", Int::class, "The bmi ID")],
         responses  = [OpenApiResponse("204")]
     )
     fun updateBmiData(ctx: Context){
         val bmidata : BMIDTO = jsonToObject(ctx.body())
         bmidata.bmi = calculateBmi(bmidata.height, bmidata.weight)
-        if ((bmiDAO.update(id = ctx.pathParam("user-id").toInt(), BMIDTOData=bmidata)) != 0)
+        if ((bmiDAO.update(id = ctx.pathParam("bmi-id").toInt(), BMIDTOData=bmidata)) != 0)
             ctx.status(204)
         else
             ctx.status(404)
@@ -110,6 +118,15 @@ object BMIController {
     )
     fun deleteBmiDataByUserId(ctx: Context){
         if(bmiDAO.deleteByUserId(ctx.pathParam("user-id").toInt()) != 0){
+            ctx.status(204)
+        }
+        else{
+            ctx.status(404)
+        }
+    }
+
+    fun deleteBmiDataByBmiId(ctx: Context){
+        if(bmiDAO.deleteByBmiId(ctx.pathParam("bmi-id").toInt()) != 0){
             ctx.status(204)
         }
         else{

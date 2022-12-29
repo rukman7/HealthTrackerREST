@@ -50,6 +50,15 @@ class JavalinConfig {
             get("/users", VueComponent("<user-overview></user-overview>"))
             get("/users/{user-id}", VueComponent("<user-profile></user-profile>"))
             get("/users/{user-id}/activities", VueComponent("<user-activity-overview></user-activity-overview>"))
+
+            //Activities
+            get("/activities", VueComponent("<activity-overview></activity-overview>"))
+            get("/activities/{activity-id}", VueComponent("<activity-profile></activity-profile>"))
+
+            //BMI
+            get("/bmi", VueComponent("<bmi-overview></bmi-overview>"))
+            get("/bmi/{bmi-id}", VueComponent("<bmi-profile></bmi-profile>"))
+
             path("/api/users") {
                 get(UserController::getAllUsers)
                 post(UserController::addUser)
@@ -59,6 +68,10 @@ class JavalinConfig {
                     patch(UserController::updateUser)
                     path("activities"){
                         get(ActivityController::getActivitiesByUserId)
+                    }
+                    path("bmi"){
+                        get(BMIController::getBmiInfoByUser)
+                        delete(BMIController::deleteBmiDataByUserId)
                     }
                     path("foods"){
                         get(FoodTrackerController::getAllFoods)
@@ -92,10 +105,10 @@ class JavalinConfig {
             path("/api/bmi"){
                 get(BMIController::getAllBmiInfo)
                 post(BMIController::addBmiData)
-                path("{user-id}"){
-                    get(BMIController::getBmiInfoByUser)
+                path("{bmi-id}"){
+                    get(BMIController::getAllBmiInfo)
                     patch(BMIController::updateBmiData)
-                    delete(BMIController::deleteBmiDataByUserId)
+                    delete(BMIController::deleteBmiDataByBmiId)
                 }
             }
 

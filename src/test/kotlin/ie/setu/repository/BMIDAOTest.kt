@@ -63,7 +63,7 @@ class BMIDAOTest {
                 bmiDAO.save(bmi3)
 
                 //Act & Assert
-                bmiDAO.getByUserId(2)?.let { assertEquals(2, it.user_id) }
+                bmiDAO.getByUserId(2)?.let { assertEquals(2, it.userId) }
             }
         }
 
@@ -88,9 +88,9 @@ class BMIDAOTest {
                 val bmiDao = PopulateBMITable()
 
                 assertEquals(3,bmiDao.getAll().size)
-                assertEquals(bmi1,bmiDao.getByUserId(bmi1.user_id))
-                assertEquals(bmi2,bmiDao.getByUserId(bmi2.user_id))
-                assertEquals(bmi3,bmiDao.getByUserId(bmi3.user_id))
+                assertEquals(bmi1,bmiDao.getByUserId(bmi1.userId))
+                assertEquals(bmi2,bmiDao.getByUserId(bmi2.userId))
+                assertEquals(bmi3,bmiDao.getByUserId(bmi3.userId))
             }
         }
     }

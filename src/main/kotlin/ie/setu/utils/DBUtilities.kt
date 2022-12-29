@@ -30,11 +30,13 @@ fun mapToWaterIntake(it: ResultRow) = WaterIntake(
 )
 
 fun mapToBmi(it: ResultRow) = BMIDTO(
-    user_id = it[Bmi.user_id],
+    userId = it[Bmi.userId],
     description = it[Bmi.description],
     height = it[Bmi.height],
     weight = it[Bmi.weight],
-    bmi = it[Bmi.bmi]
+    bmi = it[Bmi.bmi],
+    id = it[Bmi.id],
+    timestamp = it[Bmi.timestamp]
 )
 
 fun mapToFoodDTO(it: ResultRow) = FoodDTO(

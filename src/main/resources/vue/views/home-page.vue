@@ -21,6 +21,26 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <h5 class="card-header">BMI Information</h5>
+          <div class="card-body">
+            <h5 class="card-title">{{bmi.length}} bmi records</h5>
+            <a href="/bmi" class="btn btn-primary">More Details...</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <h5 class="card-header">Food calorie tracker</h5>
+          <div class="card-body">
+            <h5 class="card-title">{{food.length}} food records</h5>
+            <a href="/activities" class="btn btn-primary">More Details...</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </app-layout>
 </template>
 
@@ -30,7 +50,9 @@ Vue.component('home-page',
       template: "#home-page",
       data: () => ({
         users: [],
-        activities: []
+        activities: [],
+        bmi: [],
+        food: [],
       }),
       created() {
         axios.get("/api/users")
@@ -39,6 +61,12 @@ Vue.component('home-page',
         axios.get("/api/activities")
             .then(res => this.activities = res.data)
             .catch(() => alert("Error while fetching activities"));
+        axios.get("/api/bmi")
+            .then(res => this.bmi = res.data)
+            .catch(() => alert("Error while fetching bmi information"));
+        axios.get("/api/foods")
+            .then(res => this.food = res.data)
+            .catch(() => alert("Error while fetching food information"));
       }
     });
 </script>
