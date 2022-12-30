@@ -34,10 +34,16 @@
               </div>
               <input type="text" class="form-control" v-model="formData.foodname" name="foodname" list="FoodList" placeholder="FoodName"/>
               <datalist id="FoodList">
-                <option value="Egg and Milk">
-                <option value="Sausage and Potato">
-                <option value="Chapathy and Curry">
-                <option value="Rice">
+                <option value="Spaghetti">
+                <option value="Pizza">
+                <option value="Lasagna">
+                <option value="Ravioli">
+                <option value="Gnocchi">
+                <option value="Fettuccine Alfredo">
+                <option value="Pappardelle">
+                <option value="Tortellini">
+                <option value="Tagliatelle">
+
               </datalist>
             </div>
             <div class="input-group mb-3">
@@ -50,7 +56,6 @@
                 <option value="Lunch">
                 <option value="Evening Snacks">
                 <option value="Dinner">
-
               </datalist>
             </div>
 
