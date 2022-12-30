@@ -47,7 +47,6 @@
               </datalist>
             </div>
 
-
             <div class="input-group mb-3">
               <div class="input-group-prepend ">
                 <span class="input-group-text" style="width: 120px;" id="input-activities-duration">Duration</span>
@@ -133,7 +132,7 @@ Vue.component("activity-overview", {
             duration: this.formData.duration,
             calories: this.formData.calories,
             userId:this.formData.userId,
-            started:this.started,
+            started:timestamp,
           })
           .then(response => {
             this.activities.push(response.data)

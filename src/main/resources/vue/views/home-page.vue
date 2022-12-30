@@ -36,7 +36,7 @@
           <h5 class="card-header">Food calorie tracker</h5>
           <div class="card-body">
             <h5 class="card-title">{{food.length}} food records</h5>
-            <a href="/activities" class="btn btn-primary">More Details...</a>
+            <a href="/foods" class="btn btn-primary">More Details...</a>
           </div>
         </div>
       </div>

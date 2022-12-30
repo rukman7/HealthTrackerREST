@@ -23,6 +23,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/bmi">BMI</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/foods">Food tracker</a>
+            </li>
           </ul>
         </div>
       </nav>
