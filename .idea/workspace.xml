@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2c4b216d-f406-4591-89ab-5ae864f2c72b" name="Changes" comment="Added Food Intake Tracking feature and refactored file names to have a consistent structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Foods.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Foods.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/FoodDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/FoodDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils/DBUtilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils/DBUtilities.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/vue/views/food-overview.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/vue/views/food-overview.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/ie/setu/controllers/FoodTrackerControllerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/controllers/FoodTrackerControllerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/Fixtures.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/Fixtures.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/BMIDAOTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/BMIDAOTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/ActivityDAOTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/ActivityDAOTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +67,38 @@
       <recent name="ie.setu.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FoodTrackerControllerTest">
+  <component name="RunManager" selected="JUnit.All in healthtracketrest">
+    <configuration name="ActivityDAOTest$CreateActivities.multiple activities added to table can be retrieved successfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="healthtracketrest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ie.setu.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ie.setu.repository.ActivityDAOTest" />
+      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.ActivityDAOTest$CreateActivities" />
+      <option name="METHOD_NAME" value="multiple activities added to table can be retrieved successfully" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ActivityDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="healthtracketrest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ie.setu.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ie.setu.repository" />
+      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.ActivityDAOTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in healthtracketrest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="healthtracketrest" />
       <option name="PACKAGE_NAME" value="" />
@@ -81,18 +107,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BMIDAOTest$ReadBMIDTO.get bmi by id that doesn't exist, results in no user returned" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FoodTrackerControllerTest$CreateFoods" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="healthtracketrest" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ie.setu.repository.*" />
+          <option name="PATTERN" value="ie.setu.controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ie.setu.repository.BMIDAOTest" />
-      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.BMIDAOTest$ReadBMIDTO" />
-      <option name="METHOD_NAME" value="get bmi by id that doesn't exist, results in no user returned" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="ie.setu.controllers.FoodTrackerControllerTest" />
+      <option name="MAIN_CLASS_NAME" value="ie.setu.controllers.FoodTrackerControllerTest$CreateFoods" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -109,35 +134,6 @@
       <option name="MAIN_CLASS_NAME" value="ie.setu.controllers.FoodTrackerControllerTest$CreateFoods" />
       <option name="METHOD_NAME" value="add a food when no user exists for it, returns a 404 response" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FoodTrackerControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="healthtracketrest" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ie.setu.controllers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ie.setu.controllers" />
-      <option name="MAIN_CLASS_NAME" value="ie.setu.controllers.FoodTrackerControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ie.setu in healthtracketrest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="healthtracketrest" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ie.setu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ie.setu" />
-      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -168,20 +164,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.BMIDAOTest$ReadBMIDTO.get bmi by id that doesn't exist, results in no user returned" />
+      <item itemvalue="JUnit.ActivityDAOTest" />
+      <item itemvalue="JUnit.ActivityDAOTest$CreateActivities.multiple activities added to table can be retrieved successfully" />
+      <item itemvalue="JUnit.FoodTrackerControllerTest$CreateFoods" />
       <item itemvalue="JUnit.FoodTrackerControllerTest$CreateFoods.add a food when no user exists for it, returns a 404 response" />
-      <item itemvalue="JUnit.ie.setu in healthtracketrest" />
-      <item itemvalue="JUnit.FoodTrackerControllerTest" />
       <item itemvalue="JUnit.All in healthtracketrest" />
       <item itemvalue="Maven.deploy-heroku" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FoodTrackerControllerTest" />
         <item itemvalue="JUnit.All in healthtracketrest" />
-        <item itemvalue="JUnit.BMIDAOTest$ReadBMIDTO.get bmi by id that doesn't exist, results in no user returned" />
-        <item itemvalue="JUnit.ie.setu in healthtracketrest" />
+        <item itemvalue="JUnit.ActivityDAOTest" />
+        <item itemvalue="JUnit.ActivityDAOTest$CreateActivities.multiple activities added to table can be retrieved successfully" />
         <item itemvalue="JUnit.FoodTrackerControllerTest$CreateFoods.add a food when no user exists for it, returns a 404 response" />
+        <item itemvalue="JUnit.FoodTrackerControllerTest$CreateFoods" />
       </list>
     </recent_temporary>
   </component>
@@ -207,7 +203,7 @@
       <workItem from="1667698904526" duration="24008000" />
       <workItem from="1667754197699" duration="6205000" />
       <workItem from="1668476013587" duration="6050000" />
-      <workItem from="1671807458082" duration="61216000" />
+      <workItem from="1671807458082" duration="64903000" />
     </task>
     <task id="LOCAL-00001" summary="Updated code to use the heroku postgres instance, added logging, modified DAO class and added utility file">
       <created>1665951756735</created>

@@ -32,24 +32,6 @@ class ActivityDAOTest {
     }
 
     @Nested
-    inner class CreateActivities {
-
-        @Test
-        fun `multiple activities added to table can be retrieved successfully`() {
-            transaction {
-                //Arrange - create and populate tables with three userDTOS and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
-                //Act & Assert
-                assertEquals(3, activityDAO.getAll().size)
-                assertEquals(activity1, activityDAO.findByActivityId(activity1.id))
-                assertEquals(activity2, activityDAO.findByActivityId(activity2.id))
-                assertEquals(activity3, activityDAO.findByActivityId(activity3.id))
-            }
-        }
-    }
-
-    @Nested
     inner class ReadActivities {
 
         @Test
@@ -120,6 +102,24 @@ class ActivityDAOTest {
                 //Act & Assert
                 assertEquals(activity1, activityDAO.findByActivityId(1))
                 assertEquals(activity3, activityDAO.findByActivityId(3))
+            }
+        }
+    }
+
+    @Nested
+    inner class CreateActivities {
+
+        @Test
+        fun `multiple activities added to table can be retrieved successfully`() {
+            transaction {
+                //Arrange - create and populate tables with three userDTOS and three activities
+                val userDAO = populateUserTable()
+                val activityDAO = populateActivityTable()
+                //Act & Assert
+                assertEquals(3, activityDAO.getAll().size)
+                assertEquals(activity1, activityDAO.findByActivityId(activity1.id))
+                assertEquals(activity2, activityDAO.findByActivityId(activity2.id))
+                assertEquals(activity3, activityDAO.findByActivityId(activity3.id))
             }
         }
     }
