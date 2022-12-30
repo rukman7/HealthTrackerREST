@@ -89,6 +89,29 @@ object BMIController {
     }
 
     @OpenApi(
+        summary = "Get BMI info by BMI ID",
+        operationId = "getBmiInfoByBmiId",
+        tags = ["BMI"],
+        path = "/api/bmi/{bmi-id}",
+        method = HttpMethod.GET,
+        pathParams = [OpenApiParam("bmi-id", Int::class, "The bmi ID")],
+        responses  = [OpenApiResponse("200", [OpenApiContent(BMIDTO::class)])]
+    )
+    fun getBmiInfoByBmiId(ctx: Context) {
+        val mapper = jacksonObjectMapper()
+            .registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+        val bmidata = bmiDAO.getByBmiId(ctx.pathParam("bmi-id").toInt())
+        if (bmidata != null){
+            ctx.json(mapper.writeValueAsString(bmidata))
+            ctx.status(200)
+        }
+        else{
+            ctx.status(404)
+        }
+    }
+
+    @OpenApi(
         summary = "Update BMI data by user ID",
         operationId = "updateBmiData",
         tags = ["BMI"],
@@ -125,6 +148,15 @@ object BMIController {
         }
     }
 
+    @OpenApi(
+        summary = "Delete BMI data by BMI ID",
+        operationId = "deleteBmiDataByBmiId",
+        tags = ["BMI"],
+        path = "/api/bmi/{bmi-id}",
+        method = HttpMethod.DELETE,
+        pathParams = [OpenApiParam("bmi-id", Int::class, "The bmi ID")],
+        responses  = [OpenApiResponse("204")]
+    )
     fun deleteBmiDataByBmiId(ctx: Context){
         if(bmiDAO.deleteByBmiId(ctx.pathParam("bmi-id").toInt()) != 0){
             ctx.status(204)

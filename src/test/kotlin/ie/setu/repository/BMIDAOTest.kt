@@ -36,122 +36,122 @@ class BMIDAOTest {
     @Nested
     inner class ReadBMIDTO{
 
-//        @Test
-//        fun `getting all bmis from a populated table returns all rows`(){
-//            transaction {
-//                val bmiDAO = PopulateBMITable()
-//                val  userDAO = populateUserTable()
-//
-//                assertEquals(3,bmiDAO.getAll().size)
-//            }
-//        }
+        @Test
+        fun `getting all bmis from a populated table returns all rows`(){
+            transaction {
+                val bmiDAO = PopulateBMITable()
+                val  userDAO = populateUserTable()
 
-//        @Test
-//        fun `get bmi by id that doesn't exist, results in no user returned`(){
-//            transaction {
-//                val bmiDAO = PopulateBMITable()
-//                val  userDAO = populateUserTable()
-//
-//                assertEquals(null,bmiDAO.getByUserId(5))
-//            }
-//        }
-//
-//        @Test
-//        fun `get bmi user by id that exists, results in a correct user returned`() {
-//            transaction {
-//                //Arrange - create and populate table with three BMIDTOS data
-//                SchemaUtils.create(Bmi)
-//                val bmiDAO = BmiDAO()
-//                bmiDAO.save(bmi1)
-//                bmiDAO.save(bmi2)
-//                bmiDAO.save(bmi3)
-//
-//                //Act & Assert
-//                bmiDAO.getByUserId(2)?.let { assertEquals(2, it.userId) }
-//            }
-//        }
-//
-//        @Test
-//        fun `get all users over empty table returns none`(){
-//            transaction {
-//                SchemaUtils.create(Bmi)
-//                val bmiDAO = BmiDAO()
-//
-//                assertEquals(0,bmiDAO.getAll().size)
-//            }
-//        }
-//
-//    }
-//
-//    @Nested
-//    inner class CreateBmi{
-//
-//        @Test
-//        fun `multiple Bmis added to table can be retrieved successfully`(){
-//            transaction {
-//                val bmiDao = PopulateBMITable()
-//
-//                assertEquals(3,bmiDao.getAll().size)
-//                assertEquals(bmi1,bmiDao.getByUserId(bmi1.userId))
-//                assertEquals(bmi2,bmiDao.getByUserId(bmi2.userId))
-//                assertEquals(bmi3,bmiDao.getByUserId(bmi3.userId))
-//            }
-//        }
-//    }
-//
-//    @Nested
-//    inner class UpdateBmi{
-//
-//        @Test
-//        fun `updating existing BMI in table results in successful update`(){
-//            transaction {
-//                val bmiDAO = PopulateBMITable()
-//
-//                val BMIDTO3Updated = BMIDTO(3,3,DateTime.now(),"This is updated BMIDTO 3",6.6,76.0,29)
-//                bmiDAO.update(3,BMIDTO3Updated)
-//                assertEquals(BMIDTO3Updated,bmiDAO.getByUserId(3))
-//            }
-//        }
-//
-//        @Test
-//        fun `updating non-existent BMI in table results in no updates`(){
-//            transaction {
-//                val bmiDAO = PopulateBMITable()
-//
-//                val BMIDTO4Updated = BMIDTO(4,4, DateTime.now(),"BMIDTO 4",65.0,78.0,25)
-//                assertEquals(null,bmiDAO.getByUserId(4))
-//                assertEquals(3,bmiDAO.getAll().size)
-//            }
-//        }
-//
-//    }
-//
-//    @Nested
-//    inner class DeleteBMIDTO{
-//
-//        @Test
-//        fun `deleting a non-existent user in table results in no deletion`(){
-//            transaction {
-//                val bmiDAO = PopulateBMITable()
-//
-//                assertEquals(3,bmiDAO.getAll().size)
-//                bmiDAO.deleteByUserId(4)
-//                assertEquals(3,bmiDAO.getAll().size)
-//            }
-//        }
-//
-//        @Test
-//        fun `deleting an existing Bmi in table results in record being deleted`(){
-//            transaction {
-//                val bmidao = PopulateBMITable()
-//
-//                assertEquals(3,bmidao.getAll().size)
-//                bmidao.deleteByUserId(3)
-//                assertEquals(2,bmidao.getAll().size)
-//
-//            }
-//        }
-//
+                assertEquals(3,bmiDAO.getAll().size)
+            }
+        }
+
+        @Test
+        fun `get bmi by id that doesn't exist, results in no user returned`(){
+            transaction {
+                val bmiDAO = PopulateBMITable()
+                val  userDAO = populateUserTable()
+
+                assertEquals(null,bmiDAO.getByUserId(5))
+            }
+        }
+
+        @Test
+        fun `get bmi user by id that exists, results in a correct user returned`() {
+            transaction {
+                //Arrange - create and populate table with three BMIDTOS data
+                SchemaUtils.create(Bmi)
+                val bmiDAO = BmiDAO()
+                bmiDAO.save(bmi1)
+                bmiDAO.save(bmi2)
+                bmiDAO.save(bmi3)
+
+                //Act & Assert
+                bmiDAO.getByUserId(2)?.let { assertEquals(2, it.userId) }
+            }
+        }
+
+        @Test
+        fun `get all users over empty table returns none`(){
+            transaction {
+                SchemaUtils.create(Bmi)
+                val bmiDAO = BmiDAO()
+
+                assertEquals(0,bmiDAO.getAll().size)
+            }
+        }
+
+    }
+
+    @Nested
+    inner class CreateBmi{
+
+        @Test
+        fun `multiple Bmis added to table can be retrieved successfully`(){
+            transaction {
+                val bmiDao = PopulateBMITable()
+
+                assertEquals(3,bmiDao.getAll().size)
+                assertEquals(bmi1,bmiDao.getByUserId(bmi1.userId))
+                assertEquals(bmi2,bmiDao.getByUserId(bmi2.userId))
+                assertEquals(bmi3,bmiDao.getByUserId(bmi3.userId))
+            }
+        }
+    }
+
+    @Nested
+    inner class UpdateBmi{
+
+        @Test
+        fun `updating existing BMI in table results in successful update`(){
+            transaction {
+                val bmiDAO = PopulateBMITable()
+
+                val BMIDTO3Updated = BMIDTO(3,3,DateTime.now(),"This is updated BMIDTO 3",6.6,76.0,29)
+                bmiDAO.update(3,BMIDTO3Updated)
+                assertEquals(BMIDTO3Updated,bmiDAO.getByUserId(3))
+            }
+        }
+
+        @Test
+        fun `updating non-existent BMI in table results in no updates`(){
+            transaction {
+                val bmiDAO = PopulateBMITable()
+
+                val BMIDTO4Updated = BMIDTO(4,4, DateTime.now(),"BMIDTO 4",65.0,78.0,25)
+                assertEquals(null,bmiDAO.getByUserId(4))
+                assertEquals(3,bmiDAO.getAll().size)
+            }
+        }
+
+    }
+
+    @Nested
+    inner class DeleteBMIDTO{
+
+        @Test
+        fun `deleting a non-existent user in table results in no deletion`(){
+            transaction {
+                val bmiDAO = PopulateBMITable()
+
+                assertEquals(3,bmiDAO.getAll().size)
+                bmiDAO.deleteByUserId(4)
+                assertEquals(3,bmiDAO.getAll().size)
+            }
+        }
+
+        @Test
+        fun `deleting an existing Bmi in table results in record being deleted`(){
+            transaction {
+                val bmidao = PopulateBMITable()
+
+                assertEquals(3,bmidao.getAll().size)
+                bmidao.deleteByUserId(3)
+                assertEquals(2,bmidao.getAll().size)
+
+            }
+        }
+
     }
 
 }

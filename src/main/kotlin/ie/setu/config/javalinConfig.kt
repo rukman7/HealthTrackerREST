@@ -28,17 +28,6 @@ class JavalinConfig {
         registerRoutes(app)
         return app
 
-
-//        val app = Javalin.create {
-//            it.registerPlugin(getConfiguredOpenApiPlugin())
-//            it.defaultContentType = "application/json"
-//        }.apply {
-//            exception(Exception::class.java) { e, _ -> e.printStackTrace() }
-//            error(404) { ctx -> ctx.json("404 - Not Found") }
-//        }.start(getHerokuAssignedPort())
-//
-//        registerRoutes(app)
-//        return app
     }
 
     private fun registerRoutes(app: Javalin) {
@@ -112,7 +101,7 @@ class JavalinConfig {
                 get(BMIController::getAllBmiInfo)
                 post(BMIController::addBmiData)
                 path("{bmi-id}"){
-                    get(BMIController::getAllBmiInfo)
+                    get(BMIController::getBmiInfoByBmiId)
                     patch(BMIController::updateBmiData)
                     delete(BMIController::deleteBmiDataByBmiId)
                 }

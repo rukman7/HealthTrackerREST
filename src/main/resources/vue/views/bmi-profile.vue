@@ -25,15 +25,13 @@
       <div class="card-body">
         <form>
           <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" style="width: 120px;" id="input-activities-userId">User Id</span>
-            </div>
+            <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" style="width: 120px;" id="input-bmi-description">Description</span>
             </div>
             <input type="text" class="form-control" v-model="bmi.description" name="description" placeholder="Description"/>
-            &nbsp&nbsp
-            <div class="input-group mb-3">
+            </div>
+              <div class="input-group mb-3">
               <div class="input-group-prepend ">
                 <span class="input-group-text" style="width: 120px;" id="input-bmi-height">Height</span>
               </div>

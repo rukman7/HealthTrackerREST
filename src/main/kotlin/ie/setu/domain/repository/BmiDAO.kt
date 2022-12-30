@@ -42,6 +42,16 @@ class BmiDAO {
         }
     }
 
+    //get BMIDTO information based on a bmi id
+    fun getByBmiId(bmiId: Int): BMIDTO?{
+        return transaction {
+            Bmi
+                .select{ Bmi.id eq bmiId }
+                .map{ mapToBmi(it) }
+                .firstOrNull()
+        }
+    }
+
     fun update(id: Int, BMIDTOData: BMIDTO): Int {
         return transaction {
             Bmi.update({
