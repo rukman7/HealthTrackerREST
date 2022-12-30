@@ -23,6 +23,20 @@ jobs:
         with:
           name: Jar with Builds
           path: target/*.jar
+          
+  documentation: 
+     runs-on: ubuntu-latest
+     needs: package
+     steps:
+
+      - uses: actions/checkout@v3
+      - name: Dokka with Maven
+        run: mvn -B dokka:dokka
+      - name: Archive KDoc Documentation
+        uses: actions/upload-artifact@v3
+        with:
+          name: KDoc Documentation Site
+          path: target/dokka 
     
   test:
     name: Maven Tests
