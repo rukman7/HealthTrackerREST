@@ -14,10 +14,10 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class FoodTrackerControllerTest {
     val db = Database.connect(
-        "jdbc:postgresql://ec2-54-159-22-90.compute-1.amazonaws.com:5432/ddgbmuhn38ia5a?sslmode=require",
+        "jdbc:postgresql://mel.db.elephantsqlcom:5432/nbnveiqp",
         driver = "org.postgresql.Driver",
-        user = "ognbunafkwfgec",
-        password = "01be790597740edcef29613be57757404ad4388e230d38f976fce29f11c652f9")
+        user = "nbnveiqp",
+        password = "sPUHev5on5ZwbqTWPmL7fs5aUiQNXL_3")
     @Nested
     inner class CreateFoods {
         //   post(  "/api/foods", HealthTrackerAPI::addFood)

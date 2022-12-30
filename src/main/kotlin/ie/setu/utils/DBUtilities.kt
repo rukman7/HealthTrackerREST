@@ -40,7 +40,7 @@ fun mapToBmi(it: ResultRow) = BMIDTO(
 )
 
 fun mapToFoodDTO(it: ResultRow) = FoodDTO(
-    id = it[Foods.id],
+    id = it[Foods.foodId],
     mealname = it[Foods.mealname],
     foodname = it[Foods.foodname],
     foodtime = it[Foods.foodtime],

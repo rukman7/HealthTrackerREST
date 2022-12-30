@@ -45,11 +45,12 @@ var waterintakelist = arrayListOf<WaterIntake>(
     WaterIntake(3,"Water Intake Information",5,6)
 )
 
-//val BMIDTOS = arrayListOf<BMIDTO>(
-//    BMIDTO(1,"My BMIDTO 1",6.0,67.0,18),
-//    BMIDTO(2,"My BMIDTO 2",5.7,71.0,20),
-//    BMIDTO(3,"My MBI 3",6.6,76.0,28)
-//)//TODO fix this
+val BMIDTOS = arrayListOf<BMIDTO>(
+    BMIDTO(1,1,DateTime.now(), "My BMIDTO 1",6.0,67.0,18),
+    BMIDTO(2,2,DateTime.now(),"My BMIDTO 2",5.7,71.0,20),
+    BMIDTO(3,3,DateTime.now(),"My MBI 3",6.6,76.0,28)
+)
+// TODO fix this
 
 val foods = arrayListOf<FoodDTO>(
     FoodDTO(id = 1, mealname = "Breakfast", foodname = "Milk and Cornflakes", calories = 230, foodtime = DateTime.now(), userId = 1),
@@ -75,14 +76,14 @@ fun populateActivityTable(): ActivityDAO {
     return activityDAO
 }
 
-//fun PopulateBMITable() : BmiDAO{
-//    SchemaUtils.create(Bmi)
-//    val bmiDAO = BmiDAO()
-//    bmiDAO.save(BMIDTOS.get(0))
-//    bmiDAO.save(BMIDTOS.get(1))
-//    bmiDAO.save(BMIDTOS.get(2))
-//    return bmiDAO
-//}
+fun PopulateBMITable() : BmiDAO{
+    SchemaUtils.create(Bmi)
+    val bmiDAO = BmiDAO()
+    bmiDAO.save(BMIDTOS.get(0))
+    bmiDAO.save(BMIDTOS.get(1))
+    bmiDAO.save(BMIDTOS.get(2))
+    return bmiDAO
+}
 
 fun PopulateWaterIntake() : WaterIntakeDAO{
     SchemaUtils.create(ie.setu.domain.db.WaterIntake)

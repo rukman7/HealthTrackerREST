@@ -22,7 +22,7 @@ class FoodDAO {
     fun findByFoodId(id: Int): FoodDTO?{
         return transaction {
             Foods
-                .select() { Foods.id eq id}
+                .select() { Foods.foodId eq id}
                 .map{mapToFoodDTO(it)}
                 .firstOrNull()
         }
@@ -41,21 +41,21 @@ class FoodDAO {
     fun save(foodDTO: FoodDTO) : Int?{
         return transaction {
             Foods.insert {
-                it[id] = foodDTO.id
+                it[foodId] = foodDTO.id
                 it[mealname] = foodDTO.mealname
                 it[foodname] = foodDTO.foodname
                 it[calories] = foodDTO.calories
                 it[foodtime] = foodDTO.foodtime
                 it[userId] = foodDTO.userId
             }
-        } get Foods.id
+        } get Foods.foodId
     }
 
     //update a specific food item by food item id
     fun updateByFoodId(foodId: Int, foodDTO: FoodDTO): Int{
         return transaction {
             Foods.update ({
-                Foods.id eq foodId}) {
+                Foods.foodId eq foodId}) {
                 it[mealname] = foodDTO.mealname
                 it[foodname] = foodDTO.foodname
                 it[foodtime] = foodDTO.foodtime
@@ -68,7 +68,7 @@ class FoodDAO {
     //delete a specific food item by food item id
     fun deleteByFoodId (foodId: Int): Int{
         return transaction{
-            Foods.deleteWhere { Foods.id eq foodId }
+            Foods.deleteWhere { Foods.foodId eq foodId }
         }
     }
 

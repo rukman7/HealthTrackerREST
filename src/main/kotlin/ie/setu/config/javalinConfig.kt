@@ -59,6 +59,12 @@ class JavalinConfig {
             get("/bmi", VueComponent("<bmi-overview></bmi-overview>"))
             get("/bmi/{bmi-id}", VueComponent("<bmi-profile></bmi-profile>"))
 
+
+            //Foods
+            get("/foods", VueComponent("<food-overview></food-overview>"))
+            get("/foods/{food-id}", VueComponent("<food-profile></food-profile>"))
+
+
             path("/api/users") {
                 get(UserController::getAllUsers)
                 post(UserController::addUser)
