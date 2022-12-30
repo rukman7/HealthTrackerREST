@@ -90,27 +90,21 @@ git clone https://github.com/rukman7/HealthTrackerREST.git
 
 An user profile needs to be created to use any features of the Fitness Keeper.
 
-  
 
-```
-
-#link for user creation GIF here
-
-```
+<h1 align="center" style="display: block; font-size: 2.5em; font-weight: bold; margin-block-start: 1em; margin-block-end: 1em;">
+<a name="logo"><img align="center" src=https://github.com/rukman7/HealthTrackerREST/blob/master/assets/fitness_tracker_user_create.gif alt="AREG SDK Home" style="width:100%;height:100%"/></a>
+  <br /><br /><strong>User creation</strong>
+</h1>
 
 ### Using features
 
 Activity tracking is one of the features of Fitness Keeper. The usage is simple as show in the GIFs
 
-  
 
-```
-
-#link for activity usage GIF here
-
-```
-
-  
+<h1 align="center" style="display: block; font-size: 2.5em; font-weight: bold; margin-block-start: 1em; margin-block-end: 1em;">
+<a name="logo"><img align="center" src="https://github.com/rukman7/HealthTrackerREST/blob/master/assets/fitness_tracker_activity_create.gif" style="width:80%;height:80%"/></a>
+  <br /><br /><strong>Activity tracking</strong>
+</h1>
   
 
 ## Technology
