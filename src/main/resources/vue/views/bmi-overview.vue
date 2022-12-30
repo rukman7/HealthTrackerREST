@@ -37,12 +37,12 @@
               <div class="input-group-prepend ">
                 <span class="input-group-text" style="width: 120px;" id="input-bmi-height">Height</span>
               </div>
-              <input type="number" class="form-control" v-model="bmi.height" placeholder="Height" name="height">
+              <input type="number" class="form-control" v-model="bmi.height" placeholder="Provide height in meters" name="height">
               &nbsp&nbsp
               <div class="input-group-prepend ">
                 <span class="input-group-text" style="width: 120px;" id="input-bmi-weight">Weight</span>
               </div>
-              <input type="number" class="form-control" v-model="bmi.weight" placeholder="Weight" name="weight">
+              <input type="number" class="form-control" v-model="bmi.weight" placeholder="Provide weight in kilograms" name="weight">
             </div>
 
 <!--            <div class="input-group mb-3">-->

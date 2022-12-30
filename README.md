@@ -1,4 +1,4 @@
-# Fitness Keeper - Monitor fitness activities, make fitness a habit and stay motivated!
+# Fitness Keeper - Monitor Fitness Activities, Make Fitness a Habit and Stay Motivated!
 
   
 
@@ -8,6 +8,16 @@
 
 Fitness Keeper is a web application designed to help users track and monitor various activities that promote health and wellness.
 
+
+## Table of contents
+1. [Features](#Features)
+2. [System requirement for local development environment](#System requirement for local development environment)
+3. [Development setup](#Development setup)
+4. [Demo GIFs](#Demo GIFs)
+	- [Creating a user](#Creating a user)
+	- [Using features](#Using features)
+5. [Technology](#Technology)
+6. [Documentation Endpoints](#Technology)
   
 
 ## Features
@@ -28,7 +38,7 @@ Fitness Keeper provides the following features:
 
   
 
-## System requirement for local devleopment environment
+## System requirement for local development environment
 
 :bulb: Before you begin, make sure you have the following installed:
 
@@ -84,11 +94,11 @@ git clone https://github.com/rukman7/HealthTrackerREST.git
 
   
 
-### Creating an user
+### Creating a user
 
   
 
-An user profile needs to be created to use any features of the Fitness Keeper.
+A user profile needs to be created to use any features of the Fitness Keeper.
 
 
 <h1 align="center" style="display: block; font-size: 2.5em; font-weight: bold; margin-block-start: 1em; margin-block-end: 1em;">

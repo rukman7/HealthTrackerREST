@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c4b216d-f406-4591-89ab-5ae864f2c72b" name="Changes" comment="Added Food Intake Tracking feature and refactored file names to have a consistent structure">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/vue/views/bmi-overview.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/vue/views/bmi-overview.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/vue/views/bmi-profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/vue/views/bmi-profile.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +199,7 @@
       <workItem from="1668476013587" duration="6050000" />
       <workItem from="1671807458082" duration="71318000" />
       <workItem from="1672397129939" duration="309000" />
-      <workItem from="1672397451137" duration="7651000" />
+      <workItem from="1672397451137" duration="8390000" />
     </task>
     <task id="LOCAL-00001" summary="Updated code to use the heroku postgres instance, added logging, modified DAO class and added utility file">
       <created>1665951756735</created>
