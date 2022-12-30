@@ -11,11 +11,11 @@ Fitness Keeper is a web application designed to help users track and monitor var
 
 ## Table of contents
 1. [Features](#Features)
-2. [System requirement for local development environment](#System requirement for local development environment)
-3. [Development setup](#Development setup)
-4. [Demo GIFs](#Demo GIFs)
-	- [Creating a user](#Creating a user)
-	- [Using features](#Using features)
+2. [System requirement for local development environment](#System-requirement-for-local-development-environment)
+3. [Development setup](#Development-setup)
+4. [Demo GIFs](#Demo-GIFs)
+	- [Creating a user](#Creating-a-user)
+	- [Using features](#Using-features)
 5. [Technology](#Technology)
 6. [Documentation Endpoints](#Technology)
   
