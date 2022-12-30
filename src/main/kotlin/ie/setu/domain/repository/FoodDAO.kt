@@ -1,10 +1,10 @@
 package ie.setu.domain.repository
 
+import ie.setu.domain.FoodDTO
+import ie.setu.domain.db.Foods
 import ie.setu.utils.mapToFoodDTO
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
-import ie.setu.domain.db.Foods
-import ie.setu.domain.FoodDTO
 
 class FoodDAO {
 
@@ -13,35 +13,35 @@ class FoodDAO {
         val foodList: ArrayList<FoodDTO> = arrayListOf()
         transaction {
             Foods.selectAll().map {
-                foodList.add(mapToFoodDTO(it)) }
+                foodList.add(mapToFoodDTO(it))
+            }
         }
         return foodList
     }
 
     //Find a specific food item by food item id
-    fun findByFoodId(id: Int): FoodDTO?{
+    fun findByFoodId(id: Int): FoodDTO? {
         return transaction {
             Foods
-                .select() { Foods.foodId eq id}
-                .map{mapToFoodDTO(it)}
+                .select { Foods.foodId eq id }
+                .map { mapToFoodDTO(it) }
                 .firstOrNull()
         }
     }
 
     //Find all Foods for a specific user id
-    fun findByUserId(userId: Int): List<FoodDTO>{
+    fun findByUserId(userId: Int): List<FoodDTO> {
         return transaction {
             Foods
-                .select { Foods.userId eq userId}
-                .map {mapToFoodDTO(it)}
+                .select { Foods.userId eq userId }
+                .map { mapToFoodDTO(it) }
         }
     }
 
     //Save a food item to the database
-    fun save(foodDTO: FoodDTO) : Int?{
+    fun save(foodDTO: FoodDTO): Int {
         return transaction {
             Foods.insert {
-                it[foodId] = foodDTO.id
                 it[mealname] = foodDTO.mealname
                 it[foodname] = foodDTO.foodname
                 it[calories] = foodDTO.calories
@@ -52,10 +52,11 @@ class FoodDAO {
     }
 
     //update a specific food item by food item id
-    fun updateByFoodId(foodId: Int, foodDTO: FoodDTO): Int{
+    fun updateByFoodId(foodId: Int, foodDTO: FoodDTO): Int {
         return transaction {
-            Foods.update ({
-                Foods.foodId eq foodId}) {
+            Foods.update({
+                Foods.foodId eq foodId
+            }) {
                 it[mealname] = foodDTO.mealname
                 it[foodname] = foodDTO.foodname
                 it[foodtime] = foodDTO.foodtime
@@ -66,15 +67,15 @@ class FoodDAO {
     }
 
     //delete a specific food item by food item id
-    fun deleteByFoodId (foodId: Int): Int{
-        return transaction{
+    fun deleteByFoodId(foodId: Int): Int {
+        return transaction {
             Foods.deleteWhere { Foods.foodId eq foodId }
         }
     }
 
     //delete a specific food item by userId
-    fun deleteByUserId (userId: Int): Int{
-        return transaction{
+    fun deleteByUserId(userId: Int): Int {
+        return transaction {
             Foods.deleteWhere { Foods.userId eq userId }
         }
     }

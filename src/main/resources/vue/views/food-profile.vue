@@ -79,7 +79,7 @@
           <div class="input-group-prepend ">
             <span class="input-group-text" style="width: 120px;" id="input-foods-calories">Calories</span>
           </div>
-          <input type="number" class="form-control" v-model="food.calories" placeholder="Calories Burned" name="calories">
+          <input type="number" class="form-control" v-model="food.calories" placeholder="Calories Consumed" name="calories">
       </div>
       </form>
     </div>

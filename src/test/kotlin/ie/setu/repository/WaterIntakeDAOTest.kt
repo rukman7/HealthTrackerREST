@@ -104,7 +104,7 @@ class WaterIntakeDAOTest {
                 val waterintakedao = PopulateWaterIntake()
 
                 val waterintake2updated = WaterIntake(2,"WaterIntake 2 Updated",5,7)
-                waterintakedao.update(waterintake2.user_id,waterintake2updated)
+                waterintakedao.update(waterintake2.userId,waterintake2updated)
                 assertEquals(waterintake2updated, waterintakedao.getByUserId(2))
 
             }

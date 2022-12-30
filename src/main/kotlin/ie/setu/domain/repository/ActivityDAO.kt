@@ -13,32 +13,33 @@ class ActivityDAO {
         val activitiesList: ArrayList<ActivityDTO> = arrayListOf()
         transaction {
             Activities.selectAll().map {
-                activitiesList.add(mapToActivity(it)) }
+                activitiesList.add(mapToActivity(it))
+            }
         }
         return activitiesList
     }
 
     //Find a specific activity by activity id
-    fun findByActivityId(id: Int): ActivityDTO?{
+    fun findByActivityId(id: Int): ActivityDTO? {
         return transaction {
             Activities
-                .select() { Activities.id eq id}
-                .map{mapToActivity(it)}
+                .select { Activities.id eq id }
+                .map { mapToActivity(it) }
                 .firstOrNull()
         }
     }
 
     //Find all activities for a specific user id
-    fun findByUserId(userId: Int): List<ActivityDTO>{
+    fun findByUserId(userId: Int): List<ActivityDTO> {
         return transaction {
             Activities
-                .select {Activities.userId eq userId}
-                .map {mapToActivity(it)}
+                .select { Activities.userId eq userId }
+                .map { mapToActivity(it) }
         }
     }
 
     //Save an activityDTO to the database
-    fun save(activityDTO: ActivityDTO): Int?{
+    fun save(activityDTO: ActivityDTO): Int {
         return transaction {
             Activities.insert {
                 it[description] = activityDTO.description
@@ -52,8 +53,9 @@ class ActivityDAO {
 
     fun updateByActivityId(activityId: Int, activityDTO: ActivityDTO): Int {
         return transaction {
-            Activities.update ({
-                Activities.id eq activityId}) {
+            Activities.update({
+                Activities.id eq activityId
+            }) {
                 it[description] = activityDTO.description
                 it[duration] = activityDTO.duration
                 it[started] = activityDTO.started
@@ -62,14 +64,15 @@ class ActivityDAO {
             }
         }
     }
-    fun deleteByActivityId (activityId: Int): Int{
-        return transaction{
+
+    fun deleteByActivityId(activityId: Int): Int {
+        return transaction {
             Activities.deleteWhere { Activities.id eq activityId }
         }
     }
 
-    fun deleteByUserId (userId: Int): Int{
-        return transaction{
+    fun deleteByUserId(userId: Int): Int {
+        return transaction {
             Activities.deleteWhere { Activities.userId eq userId }
         }
     }

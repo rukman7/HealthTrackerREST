@@ -40,7 +40,7 @@ val activities = arrayListOf<ActivityDTO>(
 )
 
 var waterintakelist = arrayListOf<WaterIntake>(
-    WaterIntake(user_id = 1, "Water intake information", cups = 3, target = 8),
+    WaterIntake(userId = 1, "Water intake information", cups = 3, target = 8),
     WaterIntake(2,"Water Intake Information",4,7),
     WaterIntake(3,"Water Intake Information",5,6)
 )
@@ -53,9 +53,9 @@ val BMIDTOS = arrayListOf<BMIDTO>(
 // TODO fix this
 
 val foods = arrayListOf<FoodDTO>(
-    FoodDTO(id = 1, mealname = "Breakfast", foodname = "Milk and Cornflakes", calories = 230, foodtime = DateTime.now(), userId = 1),
-    FoodDTO(id = 2, mealname = "Lunch", foodname = "Rice and chicken", calories = 80, foodtime = DateTime.now(), userId = 1),
-    FoodDTO(id = 3, mealname = "Breakfast", foodname = "Milk and Egg", calories = 120, foodtime = DateTime.now(), userId = 2)
+    FoodDTO(foodId = 1, mealname = "Breakfast", foodname = "Milk and Cornflakes", calories = 230, foodtime = DateTime.now(), userId = 1),
+    FoodDTO(foodId = 2, mealname = "Lunch", foodname = "Rice and chicken", calories = 80, foodtime = DateTime.now(), userId = 1),
+    FoodDTO(foodId = 3, mealname = "Breakfast", foodname = "Milk and Egg", calories = 120, foodtime = DateTime.now(), userId = 2)
 )
 
 

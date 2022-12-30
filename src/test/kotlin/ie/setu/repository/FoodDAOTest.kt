@@ -44,9 +44,9 @@ class FoodDAOTest {
                 val foodDAO = populateFoodTable()
                 //Act & Assert
                 assertEquals(3, foodDAO.getAll().size)
-                assertEquals(food1, foodDAO.findByFoodId(food1.id))
-                assertEquals(food2, foodDAO.findByFoodId(food2.id))
-                assertEquals(food3, foodDAO.findByFoodId(food3.id))
+                assertEquals(food1, foodDAO.findByFoodId(food1.foodId))
+                assertEquals(food2, foodDAO.findByFoodId(food2.foodId))
+                assertEquals(food3, foodDAO.findByFoodId(food3.foodId))
             }
         }
     }
@@ -139,9 +139,9 @@ class FoodDAOTest {
                 val foodDAO = populateFoodTable()
 
                 //Act & Assert
-                val food3updated = FoodDTO(id = 3, mealname = "BreakFast", foodname = "Idly and curry",
+                val food3updated = FoodDTO(foodId = 3, mealname = "BreakFast", foodname = "Idly and curry",
                     calories = 220, foodtime = DateTime.now(), userId = 2)
-                foodDAO.updateByFoodId(food3updated.id, food3updated)
+                foodDAO.updateByFoodId(food3updated.foodId, food3updated)
                 assertEquals(food3updated, foodDAO.findByFoodId(3))
             }
         }
@@ -155,7 +155,7 @@ class FoodDAOTest {
                 val foodDAO = populateFoodTable()
 
                 //Act & Assert
-                val food4updated = FoodDTO(id = 4, mealname = "Lunch", foodname = "Porotta and Chicken",
+                val food4updated = FoodDTO(foodId = 4, mealname = "Lunch", foodname = "Porotta and Chicken",
                     calories = 420, foodtime = DateTime.now(), userId = 2)
                 foodDAO.updateByFoodId(4, food4updated)
                 assertEquals(null, foodDAO.findByFoodId(4))
@@ -192,7 +192,7 @@ class FoodDAOTest {
 
                 //Act & Assert
                 assertEquals(3, foodDAO.getAll().size)
-                foodDAO.deleteByFoodId(food3.id)
+                foodDAO.deleteByFoodId(food3.foodId)
                 assertEquals(2, foodDAO.getAll().size)
             }
         }

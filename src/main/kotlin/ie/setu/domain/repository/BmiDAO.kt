@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class BmiDAO {
 
     //Save BMIDTO data to the database
-    fun save(BMIDTOData: BMIDTO): Int?{
+    fun save(BMIDTOData: BMIDTO): Int {
         return transaction {
             Bmi.insert {
                 it[userId] = BMIDTOData.userId
@@ -27,27 +27,28 @@ class BmiDAO {
         val BMIDTOList: ArrayList<BMIDTO> = arrayListOf()
         transaction {
             Bmi.selectAll().map {
-                BMIDTOList.add(mapToBmi(it)) }
+                BMIDTOList.add(mapToBmi(it))
+            }
         }
         return BMIDTOList
     }
 
     //get BMIDTO information based on a user id
-    fun getByUserId(userId: Int): BMIDTO?{
+    fun getByUserId(userId: Int): BMIDTO? {
         return transaction {
             Bmi
-                .select{ Bmi.userId eq userId }
-                .map{ mapToBmi(it) }
+                .select { Bmi.userId eq userId }
+                .map { mapToBmi(it) }
                 .firstOrNull()
         }
     }
 
     //get BMIDTO information based on a bmi id
-    fun getByBmiId(bmiId: Int): BMIDTO?{
+    fun getByBmiId(bmiId: Int): BMIDTO? {
         return transaction {
             Bmi
-                .select{ Bmi.id eq bmiId }
-                .map{ mapToBmi(it) }
+                .select { Bmi.id eq bmiId }
+                .map { mapToBmi(it) }
                 .firstOrNull()
         }
     }
@@ -55,7 +56,8 @@ class BmiDAO {
     fun update(id: Int, BMIDTOData: BMIDTO): Int {
         return transaction {
             Bmi.update({
-                Bmi.id eq id}) {
+                Bmi.id eq id
+            }) {
                 it[description] = BMIDTOData.description
                 it[height] = BMIDTOData.height
                 it[weight] = BMIDTOData.weight
@@ -68,13 +70,13 @@ class BmiDAO {
 
     fun deleteByUserId(userId: Int): Int {
         return transaction {
-            Bmi.deleteWhere{Bmi.userId eq userId}
+            Bmi.deleteWhere { Bmi.userId eq userId }
         }
     }
 
     fun deleteByBmiId(userId: Int): Int {
         return transaction {
-            Bmi.deleteWhere{Bmi.id eq userId}
+            Bmi.deleteWhere { Bmi.id eq userId }
         }
     }
 }

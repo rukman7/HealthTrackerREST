@@ -62,7 +62,7 @@
             <div class="input-group-prepend ">
               <span class="input-group-text" style="width: 120px;" id="input-foods-calories">Calories</span>
             </div>
-            <input type="number" class="form-control" v-model="formData.calories" placeholder="Calories Burned" name="calories">
+            <input type="number" class="form-control" v-model="formData.calories" placeholder="Calories Consumed" name="calories">
           </div>
         </form>
         <button rel="tooltip" title="Update" class="btn btn-info btn-simple btn-link" @click="addFoods()">Add Foods</button>
@@ -138,7 +138,7 @@ Vue.component("food-overview", {
             mealname: this.formData.mealname,
             calories: this.formData.calories,
             userId:this.formData.userId,
-            foodtime:timestamp
+            foodtime:timestamp,
           })
           .then(response => {
             this.foods.push(response.data)

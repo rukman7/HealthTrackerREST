@@ -9,6 +9,8 @@ import ie.setu.utils.jsonToObject
 import io.javalin.http.Context
 import io.javalin.plugin.openapi.annotations.*
 
+private const val USER_ID = "user-id"
+
 object WaterIntakeController {
     private val waterIntakeDAO = WaterIntakeDAO()
 
@@ -22,18 +24,17 @@ object WaterIntakeController {
         tags = ["WaterIntake"],
         path = "/api/waterintake",
         method = HttpMethod.POST,
-        responses  = [OpenApiResponse("200")]
+        responses = [OpenApiResponse("200")]
     )
     fun addWaterIntake(ctx: Context) {
         val mapper = jacksonObjectMapper()
         val waterIntake = mapper.readValue<WaterIntake>(ctx.body())
         val userId = waterIntakeDAO.save(waterIntake)
-        if (userId != null){
-            waterIntake.user_id = userId
+        if (userId != null) {
+            waterIntake.userId = userId
             ctx.json(waterIntake)
             ctx.status(201)
-        }
-        else{
+        } else {
             ctx.status(400)
         }
     }
@@ -49,10 +50,9 @@ object WaterIntakeController {
     fun getAllWaterIntake(ctx: Context) {
         val mapper = jacksonObjectMapper()
         val waterintake = waterIntakeDAO.getAll()
-        if (waterintake.size != 0){
+        if (waterintake.size != 0) {
             ctx.status(200)
-        }
-        else{
+        } else {
             ctx.status(404)
         }
         ctx.json(mapper.writeValueAsString(waterIntakeDAO.getAll()))
@@ -64,15 +64,17 @@ object WaterIntakeController {
         tags = ["WaterIntake"],
         path = "/api/waterintake/{user-id}",
         method = HttpMethod.PATCH,
-        pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
-        responses  = [OpenApiResponse("204")]
+        pathParams = [OpenApiParam(USER_ID, Int::class, "The user ID")],
+        responses = [OpenApiResponse("204")]
     )
-    fun updateWaterIntake(ctx: Context){
-        val waterIntake : WaterIntake = jsonToObject(ctx.body())
-        if ((waterIntakeDAO.update(id = ctx.pathParam("user-id").toInt(), waterIntake=waterIntake)) != 0)
-            ctx.status(204)
-        else
-            ctx.status(404)
+    fun updateWaterIntake(ctx: Context) {
+        val waterIntake: WaterIntake = jsonToObject(ctx.body())
+        if ((waterIntakeDAO.update(
+                id = ctx.pathParam(USER_ID).toInt(),
+                waterIntake = waterIntake
+            )) != 0
+        ) ctx.status(204)
+        else ctx.status(404)
     }
 
     @OpenApi(
@@ -81,17 +83,16 @@ object WaterIntakeController {
         tags = ["WaterIntake"],
         path = "/api/waterintake/{user-id}",
         method = HttpMethod.GET,
-        pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
-        responses  = [OpenApiResponse("200", [OpenApiContent(BMIDTO::class)])]
+        pathParams = [OpenApiParam(USER_ID, Int::class, "The user ID")],
+        responses = [OpenApiResponse("200", [OpenApiContent(BMIDTO::class)])]
     )
     fun getWaterIntakeByUser(ctx: Context) {
         val mapper = jacksonObjectMapper()
-        val waterintake = waterIntakeDAO.getByUserId(ctx.pathParam("user-id").toInt())
-        if (waterintake != null){
+        val waterintake = waterIntakeDAO.getByUserId(ctx.pathParam(USER_ID).toInt())
+        if (waterintake != null) {
             ctx.json(mapper.writeValueAsString(waterintake))
             ctx.status(200)
-        }
-        else{
+        } else {
             ctx.status(404)
         }
     }
@@ -102,10 +103,10 @@ object WaterIntakeController {
         tags = ["WaterIntake"],
         path = "/api/waterintake/{user-id}",
         method = HttpMethod.DELETE,
-        pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
-        responses  = [OpenApiResponse("204")]
+        pathParams = [OpenApiParam(USER_ID, Int::class, "The user ID")],
+        responses = [OpenApiResponse("204")]
     )
-    fun deleteWaterIntakeByUserId(ctx: Context){
-        waterIntakeDAO.deleteByUserId(ctx.pathParam("user-id").toInt())
+    fun deleteWaterIntakeByUserId(ctx: Context) {
+        waterIntakeDAO.deleteByUserId(ctx.pathParam(USER_ID).toInt())
     }
 }

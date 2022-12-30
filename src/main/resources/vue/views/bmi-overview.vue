@@ -76,7 +76,7 @@
             </button>
           </a>
           <button rel="tooltip" title="Delete" class="btn btn-info btn-simple btn-link"
-                  @click="deleteBmi(bmi, index)">
+                  @click="deleteBmiData(bmi, index)">
             <i class="fas fa-trash" aria-hidden="true"></i>
           </button>
         </div>

@@ -2,9 +2,11 @@ package ie.setu.controllers
 
 import ie.setu.domain.UserDTO
 import ie.setu.domain.repository.UserDAO
-import io.javalin.http.Context
 import ie.setu.utils.jsonToObject
+import io.javalin.http.Context
 import io.javalin.plugin.openapi.annotations.*
+
+private const val USER_ID = "user-id"
 
 object UserController {
 
@@ -34,11 +36,11 @@ object UserController {
         tags = ["User"],
         path = "/api/users/{user-id}",
         method = HttpMethod.GET,
-        pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
+        pathParams = [OpenApiParam(USER_ID, Int::class, "The user ID")],
         responses = [OpenApiResponse("200", [OpenApiContent(UserDTO::class)])]
     )
     fun getUserByUserId(ctx: Context) {
-        val user = userDao.findById(ctx.pathParam("user-id").toInt())
+        val user = userDao.findById(ctx.pathParam(USER_ID).toInt())
         if (user != null) {
             ctx.json(user)
             ctx.status(200)
@@ -72,7 +74,7 @@ object UserController {
         tags = ["User"],
         path = "/api/users",
         method = HttpMethod.POST,
-        pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
+        pathParams = [OpenApiParam(USER_ID, Int::class, "The user ID")],
         responses = [OpenApiResponse("200")]
     )
     fun addUser(ctx: Context) {
@@ -91,11 +93,11 @@ object UserController {
         tags = ["User"],
         path = "/api/users/{user-id}",
         method = HttpMethod.DELETE,
-        pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
+        pathParams = [OpenApiParam(USER_ID, Int::class, "The user ID")],
         responses = [OpenApiResponse("204")]
     )
     fun deleteUser(ctx: Context) {
-        if (userDao.delete(ctx.pathParam("user-id").toInt()) != 0)
+        if (userDao.delete(ctx.pathParam(USER_ID).toInt()) != 0)
             ctx.status(204)
         else
             ctx.status(404)
@@ -107,12 +109,12 @@ object UserController {
         tags = ["User"],
         path = "/api/users/{user-id}",
         method = HttpMethod.PATCH,
-        pathParams = [OpenApiParam("user-id", Int::class, "The user ID")],
+        pathParams = [OpenApiParam(USER_ID, Int::class, "The user ID")],
         responses = [OpenApiResponse("204")]
     )
     fun updateUser(ctx: Context) {
         val foundUserDTO: UserDTO = jsonToObject(ctx.body())
-        if ((userDao.update(id = ctx.pathParam("user-id").toInt(), userDTO = foundUserDTO)) != 0)
+        if ((userDao.update(id = ctx.pathParam(USER_ID).toInt(), userDTO = foundUserDTO)) != 0)
             ctx.status(204)
         else
             ctx.status(404)

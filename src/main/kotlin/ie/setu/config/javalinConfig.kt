@@ -3,7 +3,6 @@ package ie.setu.config
 import ie.setu.controllers.*
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
-import io.javalin.plugin.json.JavalinJackson
 import io.javalin.plugin.openapi.ui.SwaggerOptions
 import io.javalin.plugin.openapi.OpenApiOptions
 import io.javalin.plugin.openapi.OpenApiPlugin
@@ -19,7 +18,7 @@ class JavalinConfig {
             it.registerPlugin(getConfiguredOpenApiPlugin())
             it.defaultContentType = "application/json"
             //added this jsonMapper for our integration tests - serialise objects to json
-//        it.jsonMapper(JavalinJackson(jsonObjectMapper())) //TODO enable this later
+//        it.jsonMapper(JavalinJackson(jsonObjectMapper()))
             it.enableWebjars()
         }.apply {
             exception(Exception::class.java) { e, _ -> e.printStackTrace() }

@@ -158,12 +158,12 @@ class FoodTrackerControllerTest {
             val addedFood = jsonToObject<FoodDTO>(addFoodResponse.body.toString())
 
             //Act & Assert - update the added food and assert a 204 is returned
-            val updatedFoodResponse = updateFood(addedFood.id, updatedMealName,
+            val updatedFoodResponse = updateFood(addedFood.foodId, updatedMealName,
                 updatedFoodName, updatedCalories, updatedFoodTime, addedUserDTO.id)
             assertEquals(204, updatedFoodResponse.status)
 
             //Assert that the individual fields were all updated as expected
-            val retrievedFoodResponse = retrieveFoodByFoodId(addedFood.id)
+            val retrievedFoodResponse = retrieveFoodByFoodId(addedFood.foodId)
             val updatedFood = jsonToObject<FoodDTO>(retrievedFoodResponse.body.toString())
             assertEquals(updatedMealName, updatedFood.mealname)
             assertEquals(updatedFoodName, updatedFood.foodname)
@@ -202,7 +202,7 @@ class FoodTrackerControllerTest {
 
             //Act & Assert - delete the added food and assert a 204 is returned
             val addedFood = jsonToObject<FoodDTO>(addFoodResponse.body.toString())
-            assertEquals(204, deleteFoodByFoodId(addedFood.id).status)
+            assertEquals(204, deleteFoodByFoodId(addedFood.foodId).status)
 
             //After - delete the user
             deleteUser(addedUserDTO.id)
@@ -233,9 +233,9 @@ class FoodTrackerControllerTest {
             val addedFood1 = jsonToObject<FoodDTO>(addFoodResponse1.body.toString())
             val addedFood2 = jsonToObject<FoodDTO>(addFoodResponse2.body.toString())
             val addedFood3 = jsonToObject<FoodDTO>(addFoodResponse3.body.toString())
-            assertEquals(200, retrieveFoodByFoodId(addedFood1.id).status)
-            assertEquals(200, retrieveFoodByFoodId(addedFood2.id).status)
-            assertEquals(200, retrieveFoodByFoodId(addedFood3.id).status)
+            assertEquals(200, retrieveFoodByFoodId(addedFood1.foodId).status)
+            assertEquals(200, retrieveFoodByFoodId(addedFood2.foodId).status)
+            assertEquals(200, retrieveFoodByFoodId(addedFood3.foodId).status)
         }
     }
 

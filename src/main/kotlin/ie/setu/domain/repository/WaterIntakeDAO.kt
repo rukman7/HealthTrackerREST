@@ -8,10 +8,10 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class WaterIntakeDAO {
 
     //Save water intake data to the database
-    fun save(waterIntake: WaterIntake):Int?{
+    fun save(waterIntake: WaterIntake): Int {
         return transaction {
             ie.setu.domain.db.WaterIntake.insert {
-                it[user_id] = waterIntake.user_id
+                it[user_id] = waterIntake.userId
                 it[description] = waterIntake.description
                 it[cups] = waterIntake.cups
                 it[target] = waterIntake.target
@@ -24,17 +24,18 @@ class WaterIntakeDAO {
         val waterIntakeList: ArrayList<WaterIntake> = arrayListOf()
         transaction {
             ie.setu.domain.db.WaterIntake.selectAll().map {
-                waterIntakeList.add(mapToWaterIntake(it)) }
+                waterIntakeList.add(mapToWaterIntake(it))
+            }
         }
         return waterIntakeList
     }
 
     //get water intake information based on a user id
-    fun getByUserId(userId: Int): WaterIntake?{
+    fun getByUserId(userId: Int): WaterIntake? {
         return transaction {
             ie.setu.domain.db.WaterIntake
-                .select{ ie.setu.domain.db.WaterIntake.user_id eq userId }
-                .map{ mapToWaterIntake(it) }
+                .select { ie.setu.domain.db.WaterIntake.user_id eq userId }
+                .map { mapToWaterIntake(it) }
                 .firstOrNull()
         }
     }
@@ -42,7 +43,8 @@ class WaterIntakeDAO {
     fun update(id: Int, waterIntake: WaterIntake): Int {
         return transaction {
             ie.setu.domain.db.WaterIntake.update({
-                ie.setu.domain.db.WaterIntake.user_id eq id}) {
+                ie.setu.domain.db.WaterIntake.user_id eq id
+            }) {
                 it[description] = waterIntake.description
                 it[cups] = waterIntake.cups
                 it[target] = waterIntake.target
@@ -52,7 +54,7 @@ class WaterIntakeDAO {
 
     fun deleteByUserId(userId: Int): Int {
         return transaction {
-            ie.setu.domain.db.WaterIntake.deleteWhere{ie.setu.domain.db.WaterIntake.user_id eq userId}
+            ie.setu.domain.db.WaterIntake.deleteWhere { ie.setu.domain.db.WaterIntake.user_id eq userId }
         }
     }
 }

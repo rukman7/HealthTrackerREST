@@ -33,7 +33,7 @@
       </div>
       <div class="col">
         <div class="card">
-          <h5 class="card-header">Food calorie tracker</h5>
+          <h5 class="card-header">Food Calorie tracker</h5>
           <div class="card-body">
             <h5 class="card-title">{{food.length}} food records</h5>
             <a href="/foods" class="btn btn-primary">More Details...</a>
